@@ -59,8 +59,8 @@ const ProductosSalaTable = () => {
     const [marcas, setMarcas] = useState<Marca[]>([]);
     const [categorias, setCategorias] = useState<Categoria[]>([]);
     const [salas, setSalas] = useState<Sala | null>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [movimiento, setMovimiento] = useState<Movimiento[]>([]);
+
+    const [, setMovimiento] = useState<Movimiento[]>([]);
     const [sortColumn, setSortColumn] = useState<string | null>(null);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   
@@ -156,6 +156,7 @@ const ProductosSalaTable = () => {
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
     });
+    
   
     if (cantidad) {
       try {
@@ -178,7 +179,6 @@ const ProductosSalaTable = () => {
         if (response.ok) {
           const createdMovimiento = await response.json();
           setMovimiento((prev) => [...prev, createdMovimiento]);
-
           setProductos((prevProductos) => 
             prevProductos.map((p) => 
               p.id === producto.id ? { ...p, cantidad: p.cantidad - parseInt(cantidad, 10) } : p

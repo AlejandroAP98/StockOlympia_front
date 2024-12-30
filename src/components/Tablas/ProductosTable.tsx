@@ -46,8 +46,8 @@ const ProductosTable = () => {
     
     const { token, id_rol, sala } = useAuth();
     const [productos, setProductos] = useState<Producto[]>([]);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [movimiento, setMovimiento] = useState<Movimiento[]>([]);
+
+    const [, setMovimiento] = useState<Movimiento[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editedProducto, setEditedProducto] = useState<Partial<Producto>>({});
     const [isAdding, setIsAdding] = useState(false);
@@ -59,7 +59,7 @@ const ProductosTable = () => {
     const [sortColumn, setSortColumn] = useState<string | null>(null);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-
+    
     useEffect(() => {
       const fetchProductos = async () => {
         try {

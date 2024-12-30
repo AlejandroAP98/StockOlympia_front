@@ -7,12 +7,14 @@ import ProductosTable from './components/Tablas/ProductosTable.tsx';
 import DashboardUser from './components/Users/DashBoardUser.tsx';
 import DashboardAudit from './components/Audit/DashboardAudit.tsx';
 import ProductosSalasAuditor from './components/Tablas/ProductosSalasAuditTable.tsx';
+import Home from './components/Auth/Home.tsx';
 
 const App = () => {
     return (
         <Router>
             <AuthProvider>
                 <Routes>
+                    <Route path='/' element={<Home />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/admin' element={<ProtectedRoute requiredRole={['admin']}   />}>	
                         <Route index element={<DashboardAdmin />} />

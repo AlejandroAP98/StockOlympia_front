@@ -12,6 +12,7 @@ export default {
   ],
   theme: {
     extend: {
+      
       colors: {
         primary: {
           DEFAULT: '#ffd700',

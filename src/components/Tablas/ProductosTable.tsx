@@ -235,7 +235,7 @@ const ProductosTable = () => {
     }                               
   };
   
-  const formatarPrecio = (precio: number | null) => {
+  const formatearPrecio = (precio: number | null) => {
     if (precio) {
       const precioSinDecimales = Math.floor(precio);
       return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -519,7 +519,7 @@ const ProductosTable = () => {
                     nombre='precio'
                   />
                 ) : (
-                  "$" + formatarPrecio(producto.precio)
+                  "$ " + formatearPrecio(producto.precio)
                 )}
               </TableCell>
               <TableCell className='gap-4 flex items-center h-full w-fit '>

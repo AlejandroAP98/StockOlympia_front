@@ -14,6 +14,16 @@ interface ReporteCardProps {
   reporteMovimientoEntradas: ReporteMovimientoEntradas[];
 }
 
+const formatearPrecio = (precio: number | null) => {
+  if (precio) {
+    const precioSinDecimales = Math.floor(precio);
+    return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  } else {
+    return 'No disponible';
+  }
+};
+
+
 const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
   return (
     <Card className="dark:text-textColor-dark h-full">
@@ -33,8 +43,8 @@ const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
             <TableRow key={r.nombre_producto}>
               <TableCell>{r.nombre_producto}</TableCell>
               <TableCell>{r.cantidad}</TableCell>
-              <TableCell>{r.precio}</TableCell>
-              <TableCell>{r.valor_total}</TableCell>
+              <TableCell>$ {formatearPrecio(r.precio)}</TableCell>
+              <TableCell>$ {formatearPrecio(r.valor_total)}</TableCell>
               <TableCell>{r.fecha_movimiento}</TableCell>
               <TableCell>{r.nombre_sala}</TableCell>
             </TableRow>

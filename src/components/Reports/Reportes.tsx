@@ -45,6 +45,11 @@ interface ReporteMovimientoEntradas{
   nombre_sala: string | null,
 }
 
+interface RowData {
+  [key: string]: string | number ; // Acepta claves de tipo string y valores de tipo string o number
+}
+
+
 const Reportes = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -164,37 +169,64 @@ const Reportes = () => {
   };
   
 
-  const exportToExcel = (data: unknown[], filename: string) => {
+  const exportToExcel = (data: RowData[], filename: string) => {
     let nombreSala = "Todas las salas";
-    if(salaId) {
+    if (salaId) {
       salas.map((sala) => {
-        if(sala.id === salaId) {
+        if (sala.id === salaId) {
           nombreSala = `${sala.nombre}`;
         }
       });
     }
+
+    // Aseguramos que los valores numéricos sean tratados como números, no como texto
+    const formattedData = data.map((row) => {
+      const newRow = { ...row }; // Ahora TypeScript sabe que 'row' es un objeto con claves de tipo string y valores de tipo string o number
+      // Recorremos cada propiedad de la fila para asegurarnos de convertir los valores a números
+      Object.keys(newRow).forEach((key) => {
+        if (typeof newRow[key] === 'string' && !key.toLowerCase().includes("fecha")) {
+          const numericValue = parseFloat(newRow[key]);
+          if (!isNaN(numericValue)) {
+            newRow[key] = numericValue; 
+          }
+        }
+        // Asegurarse de que las columnas de precio también sean tratadas como números
+        if (key.toLowerCase().includes("precio") && typeof newRow[key] === 'string') {
+          const numericPrice = parseFloat(newRow[key].replace(',', '.')); // Reemplazamos coma si es necesario
+          if (!isNaN(numericPrice)) {
+            newRow[key] = numericPrice; // Convertir el precio a número
+          }
+        }
+      });
+      return newRow;
+    });
+
     const worksheet = utils.json_to_sheet([]);
-    if(tipo_reporte === "movimiento-producto") {  
+
+    if (tipo_reporte === "movimiento-producto") {
       utils.sheet_add_aoa(worksheet, [["Producto", "Total Movimientos", "Total Entradas", "Total Salidas"]]);
-    }else if( tipo_reporte === "productos-sin-salidas"){
+    } else if (tipo_reporte === "productos-sin-salidas") {
       utils.sheet_add_aoa(worksheet, [["Producto", "Total Entradas", "Total Salidas"]]);
-    }else if(tipo_reporte === "historial-producto"){
+    } else if (tipo_reporte === "historial-producto") {
       utils.sheet_add_aoa(worksheet, [["Producto", "Tipo Movimiento", "Cantidad", "Fecha Movimiento", "Sala"]]);
-    }else if(tipo_reporte === "valor-entradas"){
-      utils.sheet_add_aoa(worksheet, [["Producto","Tipo Movimiento", "Cantidad", "Precio Unidad", "Valor Total", "Fecha Movimiento", "Nombre Sala"]]);
-    }else{
-      const worksheet = utils.json_to_sheet(data);
+    } else if (tipo_reporte === "valor-entradas") {
+      utils.sheet_add_aoa(worksheet, [["Producto", "Tipo Movimiento", "Cantidad", "Precio Unidad", "Valor Total", "Fecha Movimiento", "Nombre Sala"]]);
+    } else {
+      const worksheet = utils.json_to_sheet(formattedData); // Usamos los datos formateados
       const workbook = utils.book_new();
       utils.book_append_sheet(workbook, worksheet, "Reporte");
       // Escribir archivo
       writeFile(workbook, `${filename}.xlsx`);
-      return
+      return;
     }
-    utils.sheet_add_json(worksheet, data, { origin: "A2", skipHeader: true }); 
-    const workbook = utils.book_new(); 
+
+    utils.sheet_add_json(worksheet, formattedData, { origin: "A2", skipHeader: true });
+    const workbook = utils.book_new();
     utils.book_append_sheet(workbook, worksheet, nombreSala);
     writeFile(workbook, `${filename}.xlsx`);
-  };
+};
+
+
 
   const tipos_reporte = [
     {
@@ -286,7 +318,7 @@ const Reportes = () => {
           Generar Reporte
         </button>
         <button
-          onClick={() => exportToExcel(dataExport, tipo_reporte)}
+          onClick={() => exportToExcel(dataExport as RowData[], tipo_reporte)}
           className="dark:text-textColor-dark dark:bg-tremor-content-strong text-black  focus:border-green-500 focus:ring-amber-500 rounded-lg border border-green-400 px-2 py-2 hover:bg-green-400  hover:text-white  dark:hover:text-white text-sm bg-green-500 dark:hover:bg-green-400 ">
           <svg
               fill="#fff"

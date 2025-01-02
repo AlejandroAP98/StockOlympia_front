@@ -4,7 +4,8 @@ import ProductosAuditor from '../Tablas/ProductosAuditTable.tsx';
 import SalasAuditor from './SalasAudit.tsx';
 import Background from '../../assets/background-login.jpg';
 import Reportes from '../Reports/Reportes.tsx';
-import { ChangePassword } from '../Users/ChangePassword.tsx';
+import { ChangePassword } from '../Auth/ChangePassword.tsx';
+import Movimientos from '../Tablas/Movimientos.tsx';
 
 export function AuditInicio() {
 
@@ -20,6 +21,8 @@ export function AuditInicio() {
         return <Reportes />;
       case "cambiarContrasena":
         return <ChangePassword />;
+      case "movimientos":
+        return <Movimientos />;
       default:
         return <h1>Selecciona una opción del menú</h1>;
     }

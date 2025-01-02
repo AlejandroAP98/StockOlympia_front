@@ -9,7 +9,8 @@ import CategoriasTable from '../Tablas/CategoriasTable.tsx';
 import Reportes from '../Reports/Reportes.tsx';
 import SalasAudit from '../Audit/SalasAudit.tsx';
 import Stock from '../Tablas/ProductosAuditTable.tsx';
-import { ChangePassword } from '../Users/ChangePassword.tsx';
+import { ChangePassword } from '../Auth/ChangePassword.tsx';
+import Movimientos from '../Tablas/Movimientos.tsx';
 
 export function DashboardAdmin() {
   const [activeView, setActiveView] = useState<string>("productos");
@@ -32,6 +33,8 @@ export function DashboardAdmin() {
         return <SalasAudit />;
       case "productosAuditor":
         return <Stock />;
+      case "movimientos":
+        return <Movimientos />;
       case "cambiarContrasena":
         return <ChangePassword />; 
       default:
@@ -46,7 +49,7 @@ export function DashboardAdmin() {
       }}>
       </div>
       <LateralNav setActiveView={setActiveView} />
-      <section className="flex-1 w-full ml-16 h-screen z-10 ">
+      <section className="flex-1 w-full ml-16 h-screen z-10 j ">
           {renderContent()}
       </section>
     </main>

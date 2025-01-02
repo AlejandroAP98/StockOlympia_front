@@ -4,7 +4,7 @@ import ProductosSalaTable from '../Tablas/ProductosUsuarioTable.js';
 import background from '../../assets/background-login.jpg';
 import ProductosTable from '../Tablas/ProductosTable.tsx';
 import Movimientos from '../Tablas/Movimientos.tsx';
-import { ChangePassword } from './ChangePassword.tsx';
+import { ChangePassword } from '../Auth/ChangePassword.tsx';
 
 export function DashboardUser() {
     const [activeView, setActiveView] = useState<string>("productosUser");  
@@ -30,7 +30,7 @@ export function DashboardUser() {
       }}>
       </div>
       <LateralNav setActiveView={setActiveView} />
-      <section className="flex-1 w-full ml-16 h-screen z-10 ">
+      <section className="flex-1 w-full ml-16 h-screen z-10  ">
         {renderContent()}
       </section>
     </main>

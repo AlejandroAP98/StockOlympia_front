@@ -50,7 +50,7 @@ const ValorTotalEntradasCard = ( { sala, year, month }: InputProps) => {
       const precioSinDecimales = Math.floor(precio);
       return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
     } else {
-      return 'No disponible';
+      return 'Datos insuficientes';
     }
   };
   

@@ -4,6 +4,7 @@ import ProductosSalaTable from '../Tablas/ProductosUsuarioTable.js';
 import background from '../../assets/background-login.jpg';
 import ProductosTable from '../Tablas/ProductosTable.tsx';
 import Movimientos from '../Tablas/Movimientos.tsx';
+import { ChangePassword } from './ChangePassword.tsx';
 
 export function DashboardUser() {
     const [activeView, setActiveView] = useState<string>("productosUser");  
@@ -15,6 +16,8 @@ export function DashboardUser() {
         return <ProductosTable />;
       case "movimientos":
         return <Movimientos />;
+      case "cambiarContrasena":
+        return <ChangePassword />;
       default:
         return <h1>Selecciona una opción del menú</h1>;
     }

@@ -6,8 +6,6 @@ import Swal from 'sweetalert2';
 import { EditButton, DeleteButton, AddButton, SaveButton, CancelButton, Input } from '../Buttons/ButtonsCrud.js';
 import Loader from '../Services/Loader';
 
-
-
 import {
   Card,
   Table,
@@ -226,9 +224,9 @@ export function UserTable() {
         <AddButton onClick={() => setIsAdding(true)} />
       </div>
       {isAdding && (
-        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-1+20 left-5 top-0">
+        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-20 left-5 top-0">
           <h4 className="text-lg font-semibold">Agrega un nuevo usuario</h4>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full ">
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full  ">
             <Input
               value={newUser.nombre}
               onChange={handleNewUserChange}

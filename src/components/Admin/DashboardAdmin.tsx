@@ -9,6 +9,7 @@ import CategoriasTable from '../Tablas/CategoriasTable.tsx';
 import Reportes from '../Reports/Reportes.tsx';
 import SalasAudit from '../Audit/SalasAudit.tsx';
 import Stock from '../Tablas/ProductosAuditTable.tsx';
+import { ChangePassword } from '../Users/ChangePassword.tsx';
 
 export function DashboardAdmin() {
   const [activeView, setActiveView] = useState<string>("productos");
@@ -31,6 +32,8 @@ export function DashboardAdmin() {
         return <SalasAudit />;
       case "productosAuditor":
         return <Stock />;
+      case "cambiarContrasena":
+        return <ChangePassword />; 
       default:
         return <h1>Selecciona una opción del menú</h1>;
     }

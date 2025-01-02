@@ -285,7 +285,7 @@ const ProductosSalaTable = () => {
   return (
     <Card className="  dark:text-textColor-dark h-full bg-white/70 ">
       <div className="flex w-full p-4 ">
-        <h3 className="text-amber-300 dark:text-textColor-dark text-xl font-bold text-center w-full uppercase">Porductos {salas?.nombre}</h3>
+        <h3 className="text-amber-300 dark:text-textColor-dark text-xl font-bold text-center w-full uppercase">Productos {salas?.nombre}</h3>
       </div>
       <Table className="overflow-x-scroll max-h-[85vh] ">
         <TableHead >

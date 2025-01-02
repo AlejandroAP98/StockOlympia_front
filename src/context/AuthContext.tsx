@@ -15,7 +15,8 @@ interface AuthContextType {
     token: string | null;
     sala: number | null;
     id_rol: number| null;
-    loading: boolean; 
+    loading: boolean;
+    user_id: number | null;
     login: (usuario: string, password: string) => Promise<void>;
     logout: () => void;
 }
@@ -28,16 +29,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [token, setToken] = useState<string | null>(null);
     const [sala, setSala] = useState<number | null>(null);
     const [id_rol, setRol] = useState<number | null>(null);
+    const [user_id, setUserId] = useState<number | null>(null);
     const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     const login = async (usuario: string, password: string) => {    
     try {
         const response = await axios.post(`${API_BASE_URL}${LOGIN}`, { usuario, contrasena: password });
-        const { token, sala, rol } = response.data;
+        const { token, sala, rol, user_id } = response.data;
         setToken(token);
         setRol(rol);
         setSala(sala);
+        setUserId(user_id);
+        localStorage.setItem('user_id', user_id.toString());
         localStorage.setItem('token', token);
         localStorage.setItem('rol', rol.toString());
         if (sala===null){
@@ -67,6 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setUser(null);
         setSala(null);
         setRol(null);
+        setUserId(null);
         localStorage.removeItem('token');
         navigate('/login');
     };
@@ -77,6 +82,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             setToken(savedToken);
             const savedRol = localStorage.getItem('rol');
             const savedSala = localStorage.getItem('sala');
+            const savedUserId = localStorage.getItem('user_id');
+            if (savedUserId) setUserId(parseInt(savedUserId));
             if (savedRol) setRol(parseInt(savedRol));
             if (savedSala) setSala(parseInt(savedSala));
         }
@@ -85,7 +92,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     
 
     return (
-        <AuthContext.Provider value={{ login, logout, token, user, sala, id_rol, loading }}>
+        <AuthContext.Provider value={{ login, logout, token, user, sala, id_rol, loading, user_id }}>
             {children}
         </AuthContext.Provider>
     );

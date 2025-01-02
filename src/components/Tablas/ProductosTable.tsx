@@ -46,7 +46,6 @@ const ProductosTable = () => {
     
     const { token, id_rol, sala } = useAuth();
     const [productos, setProductos] = useState<Producto[]>([]);
-
     const [, setMovimiento] = useState<Movimiento[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editedProducto, setEditedProducto] = useState<Partial<Producto>>({});

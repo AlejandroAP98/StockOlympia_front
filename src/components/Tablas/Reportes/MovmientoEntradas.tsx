@@ -3,6 +3,8 @@ import { Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow
 
 interface ReporteMovimientoEntradas{
   nombre_producto: string ;
+  nombre_marca: string | null;
+  nombre_categoria_producto: string | null;
   cantidad: number | null;
   precio: number | null;
   valor_total: number | null;
@@ -31,6 +33,8 @@ const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
         <TableHead className='bg-backgroundColor-table dark:!border-white border !border-black dark:bg-backgroundColor-dark dark:text-textColor-dark'>
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             <TableHeaderCell>Producto</TableHeaderCell>
+            <TableHeaderCell>Marca</TableHeaderCell>
+            <TableHeaderCell>Categoría</TableHeaderCell>
             <TableHeaderCell>Total Entradas</TableHeaderCell>
             <TableHeaderCell>Precio Unidad</TableHeaderCell>
             <TableHeaderCell>Valor Total</TableHeaderCell>
@@ -42,6 +46,8 @@ const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
           {reporteMovimientoEntradas.map((r) => (
             <TableRow key={r.nombre_producto}>
               <TableCell>{r.nombre_producto}</TableCell>
+              <TableCell>{r.nombre_marca}</TableCell>
+              <TableCell>{r.nombre_categoria_producto}</TableCell>
               <TableCell>{r.cantidad}</TableCell>
               <TableCell>$ {formatearPrecio(r.precio)}</TableCell>
               <TableCell>$ {formatearPrecio(r.valor_total)}</TableCell>

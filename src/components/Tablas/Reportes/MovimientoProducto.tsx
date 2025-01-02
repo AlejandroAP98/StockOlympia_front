@@ -3,6 +3,8 @@ import { Card, Table, TableBody, TableCell, TableHead, TableHeaderCell, TableRow
 
 interface ReporteMovimientoProducto {
   nombre_producto: string ;
+  nombre_marca: string | null;
+  nombre_categoria_producto: string | null;
   tipo_movimiento: string | null;
   cantidad: number | null;
   fecha_movimiento: string | null;
@@ -20,6 +22,8 @@ const ReporteCard = ({ reporteMovimientoProducto }: ReporteCardProps) => {
             <TableHead className="bg-backgroundColor-table dark:!border-white border !border-black dark:bg-backgroundColor-dark dark:text-textColor-dark">
               <TableRow className="text-textColor-light dark:text-textColor-dark">
                 <TableHeaderCell>Producto</TableHeaderCell>
+                <TableHeaderCell>Marca</TableHeaderCell>
+                <TableHeaderCell>Categoría</TableHeaderCell>
                 <TableHeaderCell>Tipo Movimiento</TableHeaderCell>
                 <TableHeaderCell>Cantidad</TableHeaderCell>
                 <TableHeaderCell>Fecha Movimiento</TableHeaderCell>
@@ -30,6 +34,8 @@ const ReporteCard = ({ reporteMovimientoProducto }: ReporteCardProps) => {
               {reporteMovimientoProducto.map((movimiento) => (
                 <TableRow key={movimiento.nombre_producto}>
                   <TableCell>{movimiento.nombre_producto}</TableCell>
+                  <TableCell>{movimiento.nombre_marca}</TableCell>
+                  <TableCell>{movimiento.nombre_categoria_producto}</TableCell>
                   <TableCell>{movimiento.tipo_movimiento}</TableCell>
                   <TableCell>{movimiento.cantidad}</TableCell>
                   <TableCell>{movimiento.fecha_movimiento}</TableCell>

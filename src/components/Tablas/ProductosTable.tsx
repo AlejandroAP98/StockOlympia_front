@@ -257,6 +257,7 @@ const ProductosTable = () => {
         min: '1',
       },
       showCancelButton: true,
+      confirmButtonColor: '#d4af37',
       confirmButtonText: 'Confirmar',
       cancelButtonText: 'Cancelar',
     });
@@ -353,7 +354,7 @@ const ProductosTable = () => {
         }
         {id_rol === 2 &&
           <>
-            <h3 className="text-green-400 dark:text-textColor-dark font-semibold text-xl text-center uppercase w-full">Ingreso de Productos Existentes</h3> 
+            <h3 className="text-green-400 dark:text-textColor-dark font-semibold text-xl text-center uppercase w-full">Ingreso de Productos A Sala 🏦</h3>
           </>
         }
       </div>

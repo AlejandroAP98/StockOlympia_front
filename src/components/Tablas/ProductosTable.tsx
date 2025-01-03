@@ -146,8 +146,6 @@ const ProductosTable = () => {
     try {
       const response = await fetch(`${API_BASE_URL}${PRODUCTOS}/${editingId}`, {
         method: 'PUT',
-        credentials: 'include',
-        mode: 'cors',
         headers: { 'Content-Type': 'application/json'
           , Authorization: `Bearer ${token}`
          },

@@ -102,7 +102,6 @@ const Movimientos = () => {
         {error}
       </div>
     );
-
   return (
     <Card className="dark:text-textColor-dark h-full">
       <div className="flex flex-col w-full ">
@@ -128,12 +127,12 @@ const Movimientos = () => {
             value={fechaFin}
             onChange={(e) => setFechaFin(e.target.value)}
           />
-          {id_rol === 1 || id_rol === 3 && (
+          {id_rol !== 2  && (
             <label className="block text-sm font-semibold dark:text-textColor-dark">
               Sala
             </label>
           )}
-          {id_rol === 1 || id_rol === 3 && (
+          {id_rol !== 2 && (
             <select
               name="sala"
               onChange={(e) => setSalaSeleccionada(e.target.value)}

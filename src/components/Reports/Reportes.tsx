@@ -235,7 +235,6 @@ const Reportes = () => {
       }else if(tipo_reporte === 'productos-sin-salidas'){
         setReporteSinSalidas(data);
       }else if(tipo_reporte === 'historial-producto'){
-        console.log(data);
         setReporteMovimiento(data);
       }else if(tipo_reporte === 'valor-entradas'){
         setReporteMovimientoEntradas(data);

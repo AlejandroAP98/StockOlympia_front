@@ -148,7 +148,9 @@ const ProductosTable = () => {
         method: 'PUT',
         credentials: 'include',
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json'
+          , Authorization: `Bearer ${token}`
+         },
         body: JSON.stringify(editedProducto)
       });
       if (response.ok) {
@@ -212,6 +214,14 @@ const ProductosTable = () => {
   };
 
   const handleAddProducto = async () => {
+    if (newProducto.nombre === '' || newProducto.precio === 0 || newProducto.precio === null || newProducto.id_categoria === null || newProducto.id_marca === null) {
+      Swal.fire("Debes ingresar todos los campos", "Intenta nuevamente", "error");
+      return;
+    }
+    if(Number.isNaN(newProducto.precio)){
+      Swal.fire("El precio no puede ser negativo", "Intenta nuevamente", "error");
+      return;
+    }
     try {
       const response = await fetch(`${API_BASE_URL}${PRODUCTOS}`, {
         method: 'POST',

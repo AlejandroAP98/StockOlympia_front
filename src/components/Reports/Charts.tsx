@@ -17,8 +17,6 @@ interface DatosProcesados {
 
 const ReporteCard = ({ reporteProductos }: ReporteCardProps) => {
   const datosProcesados = procesarDatos(reporteProductos);
-  console.log(datosProcesados);
-
   return (
     <div className="flex flex-col gap-2 justify-center items-center ">
         <AreaChart

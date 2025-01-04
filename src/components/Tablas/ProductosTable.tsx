@@ -212,14 +212,20 @@ const ProductosTable = () => {
   };
 
   const handleAddProducto = async () => {
-    if (newProducto.nombre === '' || newProducto.precio === 0 || newProducto.precio === null || newProducto.id_categoria === null || newProducto.id_marca === null) {
+    // Eliminar los espacios en blanco al principio y al final del nombre
+    const trimmedNombre = newProducto.nombre?.trim();
+  
+    // Verificar si el nombre está vacío después de eliminar los espacios
+    if (trimmedNombre === '' || newProducto.precio === 0 || newProducto.precio === null || newProducto.id_categoria === null || newProducto.id_marca === null) {
       Swal.fire("Debes ingresar todos los campos", "Intenta nuevamente", "error");
       return;
     }
-    if(Number.isNaN(newProducto.precio)){
+  
+    if (Number.isNaN(newProducto.precio)) {
       Swal.fire("El precio no puede ser negativo", "Intenta nuevamente", "error");
       return;
     }
+  
     try {
       const response = await fetch(`${API_BASE_URL}${PRODUCTOS}`, {
         method: 'POST',
@@ -227,8 +233,9 @@ const ProductosTable = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(newProducto),
+        body: JSON.stringify({ ...newProducto, nombre: trimmedNombre }), // Actualizar el nombre sin espacios
       });
+  
       if (response.ok) {
         const createdProducto = await response.json();
         setProductos((prev) => [...prev, createdProducto]);
@@ -238,10 +245,13 @@ const ProductosTable = () => {
       } else {
         Swal.fire("Error al agregar el producto", "Intenta nuevamente", "error");
       }
-    } catch  {
+    } catch {
       Swal.fire("Error al agregar el producto", "Intenta nuevamente", "error");
-    }                               
+    }
+
+    
   };
+  
   
   const formatearPrecio = (precio: number | null) => {
     if (precio) {

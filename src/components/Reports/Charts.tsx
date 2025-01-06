@@ -2,6 +2,7 @@ import { AreaChart } from '@tremor/react';
 
 interface ReporteCardProps {
   reporteProductos: ReporteProductos[];
+  titulo: string;
 }
 
 interface ReporteProductos {
@@ -15,22 +16,24 @@ interface DatosProcesados {
   [key: string]: number | string; 
 }
 
-const ReporteCard = ({ reporteProductos }: ReporteCardProps) => {
+const ReporteCard = ({ reporteProductos, titulo }: ReporteCardProps) => {
   const datosProcesados = procesarDatos(reporteProductos);
   return (
-    <div className="flex flex-col gap-2 justify-center items-center ">
+    <div className="flex flex-col justify-center items-center ">
+      <h1 className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full bg-backgroundColor-table dark:bg-backgroundColor-dark p-2">
+      {titulo}
+      </h1>
         <AreaChart
-            className="h-96 p-4 border font-medium text-xl rounded-lg bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark "
-            data={datosProcesados}
-            categories={[...new Set(datosProcesados.flatMap((r) => Object.keys(r).filter(key => key !== 'fecha')))]} 
-            index="fecha"
-            valueFormatter= {(value) => abreviarNumero(value as number)}
-            colors={[ 'violet', 'green', 'yellow', 'orange', 'blue', 'red', 'pink', 'purple']}
-            showLegend
-            showTooltip
-            
-            
-            />
+          className="h-96 p-4 border font-medium text-xl rounded-lg bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark "
+          data={datosProcesados}
+          categories={[...new Set(datosProcesados.flatMap((r) => Object.keys(r).filter(key => key !== 'fecha')))]} 
+          index="fecha"
+          valueFormatter= {(value) => abreviarNumero(value as number)}
+          colors={[ 'violet', 'green', 'yellow', 'orange', 'blue', 'red', 'pink', 'purple']}
+          showLegend
+          showTooltip
+        />
+        
     </div>
   );
 };

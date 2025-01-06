@@ -73,6 +73,7 @@ interface ReporteProductos {
 }
 
 
+
 const Reportes = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -239,7 +240,8 @@ const Reportes = () => {
       }else if(tipo_reporte === 'valor-entradas'){
         setReporteMovimientoEntradas(data);
       }else if(tipo_reporte === 'grafico-entradas-salas'){
-
+        setReporteProductos(data);
+      }else if(tipo_reporte === 'grafico-salidas-salas'){
         setReporteProductos(data);
       }
       setDataExport(data);
@@ -330,6 +332,10 @@ const Reportes = () => {
     {
       nombre: "Gráfica Entradas",
       valor: "grafico-entradas-salas"
+    },
+    {
+      nombre: "Gráfica Salidas",
+      valor: "grafico-salidas-salas"
     }
     
   ];
@@ -370,7 +376,7 @@ const Reportes = () => {
             ))}
           </select>
         </label>
-        {tipo_reporte === 'historial-producto' || tipo_reporte === 'valor-entradas' || tipo_reporte === 'grafico-entradas-salas' ? (
+        {tipo_reporte === 'historial-producto' || tipo_reporte === 'valor-entradas' || tipo_reporte === 'grafico-entradas-salas' || tipo_reporte === 'grafico-salidas-salas' ? (
           <label className="text-textColor-light dark:text-textColor-dark font-semibold text-sm flex flex-col text-center ">
             Sala
             <select
@@ -387,13 +393,12 @@ const Reportes = () => {
             </select>
           </label>
         ) : null}
-        {tipo_reporte !=='grafico-entradas-salas' ? (
           <label className="text-textColor-light dark:text-textColor-dark font-semibold text-sm flex flex-col text-center ">
             Producto
             <select
               name="producto"
               onChange={(e) => setProductoId(Number(e.target.value))}
-              className="dark:text-textColor-dark dark:bg-slate-700 text-black text-balance text-ellipsis overflow-hidden font-[200] border-b-1 focus:border-amber-500 focus:ring-amber-500 rounded-lg mx-2 text-sm max-w-[200px]"
+              className="dark:text-textColor-dark dark:bg-slate-700 text-black text-balance text-ellipsis overflow-hidden font-[200] border-b-1 focus:border-amber-500 focus:ring-amber-500 rounded-lg mx-2 text-sm max-w-[250px]"
             >
               <option value="">Todos los productos</option>
               {productos.map((producto) => (
@@ -403,7 +408,6 @@ const Reportes = () => {
               ))}
             </select>
           </label>
-        ) : null}
         {tipo_reporte === 'historial-producto' || tipo_reporte === 'valor-entradas' ? (
           <label className="text-textColor-light dark:text-textColor-dark font-semibold text-sm flex flex-col text-center">
             <span>Categoría</span>
@@ -475,9 +479,11 @@ const Reportes = () => {
         : tipo_reporte === 'valor-entradas' && reporteMovimientoEntradas.length > 0 ?
           <MovimientoEntradas reporteMovimientoEntradas ={reporteMovimientoEntradas}/>
         : tipo_reporte === 'grafico-entradas-salas' && reporteProductos.length > 0 ?
-          <Charts reporteProductos={reporteProductos}/>
-        :(
-          !loading && 
+          <Charts reporteProductos={reporteProductos} titulo={'Entrada de Productos'}/>
+        : tipo_reporte === 'grafico-salidas-salas' && reporteProductos.length > 0 ?
+          <Charts reporteProductos={reporteProductos} titulo={'Salida de Productos'}/>
+        :( 
+          !loading &&   
           <p className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full flex justify-center items-center gap-2">
             No hay datos para mostrar 🎰
           </p>

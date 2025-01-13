@@ -451,7 +451,7 @@ const Reportes = () => {
           <button
             onClick={() => exportToExcel(dataExport as RowData[], tipo_reporte)}
             className="dark:text-textColor-dark dark:bg-tremor-content-strong text-black  focus:border-green-500 focus:ring-amber-500 rounded-lg border border-green-400 px-2 py-2 hover:bg-green-400  hover:text-white  dark:hover:text-white text-sm bg-green-500 dark:hover:bg-green-400 "
-            disabled={!startDate || !endDate || tipo_reporte === 'grafico-entradas-salas' || loading}
+            disabled={!startDate || !endDate || tipo_reporte === 'grafico-entradas-salas' || tipo_reporte === 'grafico-salidas-salas'  || loading}
             >
             <svg
                 fill="#fff"

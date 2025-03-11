@@ -34,7 +34,7 @@ const Login: React.FC = () => {
                     </div>
                     <div className=' p-6 flex flex-col gap-4'>
                         <div >
-                            <label className='text-sm'>Usuario</label>
+                            <label className='text-sm font-semibold'>Usuario</label>
                             <InputLogin 
                                 placeholder="Nombre de usuario o email"
                                 value={usuario}
@@ -44,9 +44,9 @@ const Login: React.FC = () => {
                             />
                         </div>
                         <div>
-                            <label className='text-sm'>Contraseña</label>
+                            <label className='text-sm font-semibold'>Contraseña</label>
                             <InputLogin 
-                                placeholder="Contraseña"
+                                placeholder="Ingrese su contraseña"
                                 type='password'
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
                                 autocomplete='current-password'
                             />
                         </div>
-                        <button type="submit" className='bg-primary-light/90 dark:bg-accent-dark text-black dark:text-black/90 font-semibold py-2 px-4 rounded-lg hover:bg-primary/75 border border-black dark:hover:bg-accent-dark/90  '>
+                        <button type="submit" className='bg-primary-light/90 dark:bg-accent-dark text-black dark:text-black/90 py-2 px-4 rounded-lg hover:bg-primary/75 border border-black dark:hover:bg-accent-dark/90  '>
                             Iniciar Sesión
                         </button>
                     </div>

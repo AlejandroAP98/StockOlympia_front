@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { EditButton, DeleteButton, AddButton, SaveButton, CancelButton, Input, InputFila } from '../Buttons/ButtonsCrud.js';
 import Loader from '../Services/Loader';
 import Post from './Post';
+import SearchBar from '../Services/SearchBar';
 
 import {
   Card,
@@ -141,6 +142,26 @@ export function CategoriasTable() {
     }
   };
 
+  const handleSearch = async (term: string) => {
+    try{
+      setLoading(true);
+      const response = await fetch(`${API_BASE_URL}${CATEGORIAS}/search?term=${term}`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setCategorias(data);
+      }
+    } catch {
+      setError("Error al buscar categorias.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   if (loading) return <Loader />; 
   if (error) return <div className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full">{error}</div>;
 
@@ -177,6 +198,7 @@ export function CategoriasTable() {
       )}
       <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">        
         <TableHead>
+          <SearchBar onSearch={handleSearch} color='blue-400' />
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
             <TableHeaderCell className='text-lg font-bold'>Descripción</TableHeaderCell>
@@ -185,7 +207,7 @@ export function CategoriasTable() {
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center">
           {categorias.map((categoria) => (
-            <TableRow key={categoria.id} className='dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>
+            <TableRow key={categoria.id} className='text-sm dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>
               <TableCell className='text-pretty'>
                 {editingId === categoria.id ? (
                   <InputFila

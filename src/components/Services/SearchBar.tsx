@@ -23,7 +23,7 @@ const SearchBar = ({ onSearch, color }: SearchBarProps) => {
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Buscar productos..."
+        placeholder="Ingrese nombre..."
         className='bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark text-textColor-light text-sm overflow-hidden font-[100] border-b-1 focus:border-amber-500 focus:ring-amber-500 rounded-sm w-full dark:!border-white'
       />
       <button

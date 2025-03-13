@@ -316,7 +316,7 @@ export function UserTable() {
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center ">
           {users.map((user) => (
-            <TableRow key={user.id} className='dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>
+            <TableRow key={user.id} className='dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10 text-sm'>
              {isEditing ? (
                 <>
                   <TableCell className='text-pretty'>

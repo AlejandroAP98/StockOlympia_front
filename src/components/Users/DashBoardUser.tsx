@@ -19,7 +19,7 @@ export function DashboardUser() {
       case "cambiarContrasena":
         return <ChangePassword />;
       default:
-        return <h1>Selecciona una opción del menú</h1>;
+        return <h1 className='text-center text-2xl font-bold'>Selecciona una opción del menú</h1>;
     }
   };
 

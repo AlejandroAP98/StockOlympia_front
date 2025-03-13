@@ -24,7 +24,7 @@ export function AuditInicio() {
       case "movimientos":
         return <Movimientos />;
       default:
-        return <h1>Selecciona una opción del menú</h1>;
+        return <h1 className='text-center text-2xl font-bold'>Selecciona una opción del menú</h1>;
     }
   };
 

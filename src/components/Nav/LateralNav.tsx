@@ -17,8 +17,10 @@ export default function LateralNav({ setActiveView }: LateralNavProps) {
   return (
     <aside className="flex flex-col z-20   h-screen hover:w-40 w-16 transition-width duration-300 group absolute dark:bg-backgroundColor-dark/90 bg-primary/70 hover:bg-primary hover:dark:bg-primary-dark dark:text-textColor-dark text-textColor-light dark:border-r-[1px] border-r-[1px] border-accent-light/10 ">
       <div className="flex flex-col items-center h-full pt-8 relative ">
+        <div onClick={() => setActiveView("")} className='cursor-pointer'>
         <img src={logo} alt="Logo olympia casinos" className="w-auto absolute top-0 left-0" />
-        <div className="relative mt-4 w-full h-full py-12  ">
+        </div>
+        <div className="relative mt-4 w-full h-full py-12">
           {id_rol === rolesMapping.admin? (
             <>
             <button

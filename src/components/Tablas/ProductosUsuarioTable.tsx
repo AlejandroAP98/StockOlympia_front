@@ -96,7 +96,6 @@ const ProductosSalaTable = () => {
         setLoading(true);
         const data = await fetchComponent({ url: API_BASE_URL + SALAS_PRODUCTOS + '/' + sala, token });
         setProductos(data);
-        console.log(data);
       } catch {
         setError("Error al cargar las salas. Por favor, intenta nuevamente.",);
       } finally {
@@ -206,9 +205,9 @@ const ProductosSalaTable = () => {
   };
   
   const formatearPrecio = (precio: number | null) => {
-    if (precio) {
+    if (precio !== null) {
       const precioSinDecimales = Math.floor(precio);
-      return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      return precioSinDecimales.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     } else {
       return 'No disponible';
     }
@@ -370,7 +369,7 @@ const ProductosSalaTable = () => {
                   )}
                 </TableCell>
                 <TableCell className='text-sm'>
-                  {"$ " + formatearPrecio(producto.precio)}
+                  {formatearPrecio(producto.precio)}
                 </TableCell>
                 <TableCell>
                     {AlertStock(producto.cantidad)}

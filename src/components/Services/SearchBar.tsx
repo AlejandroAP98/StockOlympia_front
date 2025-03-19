@@ -42,13 +42,13 @@ const SearchBar = ({ onSearch, tabla, color }: SearchBarProps) => {
   };
 
   return (
-    <div className='flex gap-2 my-0 h-auto top-5 absolute z-10 '>
+    <div className='flex gap-2 my-0 h-auto top-5 absolute z-10  '>
       <input
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Ingrese nombre..."
-        className='bg-backgroundColor-light rounded-md dark:bg-backgroundColor-dark dark:text-textColor-dark text-textColor-light text-sm overflow-hidden font-[100] border-b-1 focus:border-amber-500 focus:ring-amber-500 w-full dark:!border-white'
+        placeholder="Ingrese nombre o código..."
+        className='bg-backgroundColor-light rounded-md dark:bg-backgroundColor-dark dark:text-textColor-dark text-textColor-light text-sm overflow-hidden font-[100] border-1 focus:border-amber-500 focus:ring-amber-500/50 w-full dark:!border-white placeholder:text-xs '
       />
       <button
         onClick={handleSearch}

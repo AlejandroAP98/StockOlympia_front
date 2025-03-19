@@ -59,50 +59,49 @@ const ProductosTable = () => {
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
     
-    useEffect(() => {
-      const fetchProductos = async () => {
-        try {
-          setLoading(true);
-          const data = await fetchComponent({ url: API_BASE_URL + PRODUCTOS, token });
-          setProductos(data);
-        } catch {
-          setError("Error al cargar los productos. Por favor, intenta nuevamente.",);
-        } finally {
-          setLoading(false);
-        }
-        
-      };
-      const fetchMarcas = async () => {
-        try {
-          setLoading(true);
-          const data = await fetchComponent({ url: API_BASE_URL + MARCAS, token });
-          setMarcas(data);
-        } catch {
-          setError("Error al cargar las marcas. Por favor, intenta nuevamente.",);
-        } finally {
-          setLoading(false);
-        }
-      };
-      const fetchCategorias = async () => {
-        try {
-          setLoading(true);
-          const data = await fetchComponent({ url: API_BASE_URL + CATEGORIAS, token });
-          setCategorias(data);
-        } catch {
-          setError("Error al cargar las categorias. Por favor, intenta nuevamente.",);
-        } finally {
-          setLoading(false);
-        }
-      };
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchComponent({ url: API_BASE_URL + PRODUCTOS, token });
+        setProductos(data);
+      } catch {
+        setError("Error al cargar los productos. Por favor, intenta nuevamente.",);
+      } finally {
+        setLoading(false);
+      }
+      
+    };
+    const fetchMarcas = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchComponent({ url: API_BASE_URL + MARCAS, token });
+        setMarcas(data);
+      } catch {
+        setError("Error al cargar las marcas. Por favor, intenta nuevamente.",);
+      } finally {
+        setLoading(false);
+      }
+    };
+    const fetchCategorias = async () => {
+      try {
+        setLoading(true);
+        const data = await fetchComponent({ url: API_BASE_URL + CATEGORIAS, token });
+        setCategorias(data);
+      } catch {
+        setError("Error al cargar las categorias. Por favor, intenta nuevamente.",);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      fetchProductos();
-      fetchMarcas();
-      fetchCategorias();
-    }, [token]);
+    fetchProductos();
+    fetchMarcas();
+    fetchCategorias();
+  }, [token]);
 
   const handleSearch = async (term: string) => {
-    if (!term) {  
-      window.location.reload();
+    if (!term) {
       return;
     }
     try {
@@ -128,19 +127,19 @@ const ProductosTable = () => {
     }
   };
 
-    const handleEdit = (producto: Producto) => {
-      setEditingId(producto.id);
-      setEditedProducto(producto);
-      setIsAdding(false);
-      setNewProducto({
-        nombre: "",
-        codigo: "",
-        cantidad: 0,
-        id_categoria: null,
-        id_marca: null,
-        precio: null,
-      });
-    };
+  const handleEdit = (producto: Producto) => {
+    setEditingId(producto.id);
+    setEditedProducto(producto);
+    setIsAdding(false);
+    setNewProducto({
+      nombre: "",
+      codigo: "",
+      cantidad: 0,
+      id_categoria: null,
+      id_marca: null,
+      precio: null,
+    });
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -283,15 +282,14 @@ const ProductosTable = () => {
   };
   
   const formatearPrecio = (precio: number | null) => {
-    if (precio) {
+    if (precio !== null) {
       const precioSinDecimales = Math.floor(precio);
-      return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      return precioSinDecimales.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
     } else {
       return 'No disponible';
     }
   };
-
-
 
   const handleIngresar = async (producto: Producto) => {
 
@@ -602,7 +600,7 @@ const ProductosTable = () => {
                     nombre='precio'
                   />
                 ) : (
-                  "$ " + formatearPrecio(producto.precio)
+                    formatearPrecio(producto.precio)
                 )}
               </TableCell>
               <TableCell className='gap-4 flex items-center h-full w-fit '>

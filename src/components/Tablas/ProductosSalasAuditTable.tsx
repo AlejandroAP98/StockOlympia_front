@@ -142,9 +142,9 @@ import {
     };
 
     const formatearPrecio = (precio: number | null) => {
-      if (precio) {
+      if (precio !== null) {
         const precioSinDecimales = Math.floor(precio);
-        return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        return precioSinDecimales.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
       } else {
         return 'No disponible';
       }
@@ -272,7 +272,7 @@ import {
               </div>
               <Table className="overflow-x-scroll max-h-[80vh] "> 
                   <TableHead className='bg-backgroundColor-table dark:!border-white border !border-black dark:bg-backgroundColor-dark dark:text-textColor-dark '>
-                    <SearchBar onSearch={handleSearch} tabla='productos' color='amber-300' />
+                    <SearchBar onSearch={handleSearch} tabla='salaauditoria' color='amber-300' />
                     <ValorTotalEntradasCard  sala={sala?.id ?? 0} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
                     <TableRow className="text-textColor-light dark:text-textColor-dark ">
                       <TableHeaderCell
@@ -345,7 +345,7 @@ import {
                                   )}
                               </TableCell>
                               <TableCell>
-                                  {"$ " + formatearPrecio(producto.precio)}
+                                  {formatearPrecio(producto.precio)}
                               </TableCell>
                               <TableCell>
                                   {AlertStock(producto.cantidad)}

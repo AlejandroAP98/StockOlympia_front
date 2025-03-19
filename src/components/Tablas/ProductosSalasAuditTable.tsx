@@ -272,7 +272,7 @@ import {
               </div>
               <Table className="overflow-x-scroll max-h-[80vh] "> 
                   <TableHead className='bg-backgroundColor-table dark:!border-white border !border-black dark:bg-backgroundColor-dark dark:text-textColor-dark '>
-                    <SearchBar onSearch={handleSearch} color='amber-300' />
+                    <SearchBar onSearch={handleSearch} tabla='productos' color='amber-300' />
                     <ValorTotalEntradasCard  sala={sala?.id ?? 0} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
                     <TableRow className="text-textColor-light dark:text-textColor-dark ">
                       <TableHeaderCell

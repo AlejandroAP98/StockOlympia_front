@@ -36,6 +36,7 @@ interface Producto {
   id_marca: number | null;
   precio: number | null;
   id_sala: number | null;
+  codigo: string | null;
 }
 
 interface Movimiento {
@@ -94,7 +95,8 @@ const ProductosSalaTable = () => {
       try {
         setLoading(true);
         const data = await fetchComponent({ url: API_BASE_URL + SALAS_PRODUCTOS + '/' + sala, token });
-        setProductos(data); 
+        setProductos(data);
+        console.log(data);
       } catch {
         setError("Error al cargar las salas. Por favor, intenta nuevamente.",);
       } finally {
@@ -290,9 +292,10 @@ const ProductosSalaTable = () => {
       </div>
       <Table className="overflow-x-scroll max-h-[85vh] ">
         <TableHead >
-          <SearchBar onSearch={handleSearch} color='amber-300' />
+          <SearchBar onSearch={handleSearch} tabla='productos' color='amber-300' />
           <ValorTotalEntradasCard sala={sala} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
           <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white">
+            <TableHeaderCell className='text-sm font-bold'>Código</TableHeaderCell>
             <TableHeaderCell
               className={`text-sm font-bold ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
               onClick={() => handleSort('nombre')}
@@ -342,6 +345,9 @@ const ProductosSalaTable = () => {
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white ">
             {sortedProductos.map((producto) => (
               <TableRow key={producto.id} className='dark:hover:bg-backgroundColor-tableUserDark/5 dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10 '>
+                <TableCell className='text-pretty text-sm'>
+                  {producto.codigo}
+                </TableCell>
                 <TableCell className='text-pretty text-sm'>
                   {producto.nombre}
                 </TableCell>

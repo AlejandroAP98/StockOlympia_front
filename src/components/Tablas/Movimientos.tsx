@@ -18,6 +18,7 @@ interface Movimiento {
   id: number;
   id_sala: number;
   cantidad: number;
+  nombre_usuario: string;
   tipo_movimiento: string;
   fecha_movimiento: string;
   nombre_producto: string;
@@ -67,7 +68,8 @@ const Movimientos = () => {
         setLoading(false);
       }
     };
-
+    console.log(movimientos);
+    console.log(salas);
     fetchSalas();
     fetchMovimientos();
   }, [token]);
@@ -153,6 +155,7 @@ const Movimientos = () => {
         <TableHead>
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             <TableHeaderCell className="text-sm font-bold">Sala</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold">Usuario</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Fecha y Hora</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Tipo</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Producto</TableHeaderCell>
@@ -169,6 +172,7 @@ const Movimientos = () => {
                 <TableCell>
                   {salas.find((sala) => sala.id === movimiento.id_sala)?.nombre}
                 </TableCell>
+                <TableCell className="text-pretty">{(movimiento.nombre_usuario)}</TableCell>
                 <TableCell className="text-pretty">{(movimiento.fecha_movimiento)}</TableCell>
                 <TableCell>
                   {movimiento.tipo_movimiento === 'entrada' ? (

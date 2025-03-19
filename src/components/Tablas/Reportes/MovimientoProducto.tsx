@@ -9,6 +9,7 @@ interface ReporteMovimientoProducto {
   cantidad: number | null;
   fecha_movimiento: string | null;
   nombre_sala: string | null,
+  nombre_usuario: string | null,
 }
 
 interface ReporteCardProps {
@@ -28,6 +29,7 @@ const ReporteCard = ({ reporteMovimientoProducto }: ReporteCardProps) => {
                 <TableHeaderCell>Cantidad</TableHeaderCell>
                 <TableHeaderCell>Fecha Movimiento</TableHeaderCell>
                 <TableHeaderCell>Sala</TableHeaderCell>
+                <TableHeaderCell>Usuario</TableHeaderCell>
               </TableRow>
             </TableHead>
             <TableBody className="dark:text-textColor-dark text-black text-sm text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white">
@@ -40,6 +42,7 @@ const ReporteCard = ({ reporteMovimientoProducto }: ReporteCardProps) => {
                   <TableCell>{movimiento.cantidad}</TableCell>
                   <TableCell>{movimiento.fecha_movimiento}</TableCell>
                   <TableCell>{movimiento.nombre_sala}</TableCell>
+                  <TableCell>{movimiento.nombre_usuario}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

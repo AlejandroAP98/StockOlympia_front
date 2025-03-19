@@ -290,7 +290,7 @@ const ProductosSalaTable = () => {
         <h3 className="text-amber-400 dark:text-textColor-dark text-xl font-semibold text-center w-full uppercase">Productos {salas?.nombre}🎰</h3>
       </div>
       <Table className="overflow-x-scroll max-h-[85vh] ">
-        <TableHead >
+        <TableHead className='bg-amber-100/20 dark:bg-gray-400/20 border-b-2 border-black dark:border-white'>
           <SearchBar onSearch={handleSearch} tabla='productos' color='amber-300' />
           <ValorTotalEntradasCard sala={sala} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
           <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white">

@@ -49,6 +49,7 @@ interface ReporteMovimientoProducto {
   cantidad: number | null;
   fecha_movimiento: string | null;
   nombre_sala: string | null,
+  nombre_usuario: string | null,
 }
 
 interface ReporteMovimientoEntradas{
@@ -60,6 +61,7 @@ interface ReporteMovimientoEntradas{
   valor_total: number | null;
   fecha_movimiento: string | null;
   nombre_sala: string | null,
+  nombre_usuario: string | null,
 }
 
 interface RowData {
@@ -292,9 +294,9 @@ const Reportes = () => {
     } else if (tipo_reporte === "productos-sin-salidas") {
       utils.sheet_add_aoa(worksheet, [["Producto", "Total Entradas", "Total Salidas"]]);
     } else if (tipo_reporte === "historial-producto") {
-      utils.sheet_add_aoa(worksheet, [["Producto", "Categoría", "Marca" ,"Tipo Movimiento", "Cantidad", "Fecha Movimiento", "Sala"]]);
+      utils.sheet_add_aoa(worksheet, [["Producto", "Categoría", "Marca" ,"Tipo Movimiento", "Cantidad", "Fecha Movimiento", "Sala", "Usuario"]]);
     } else if (tipo_reporte === "valor-entradas") {
-      utils.sheet_add_aoa(worksheet, [["Producto", "Categoría", "Marca", "Movimiento", "Cantidad", "Precio Unidad", "Valor Total", "Fecha Movimiento", "Nombre Sala"]]);
+      utils.sheet_add_aoa(worksheet, [["Producto", "Categoría", "Marca", "Movimiento", "Cantidad", "Precio Unidad", "Valor Total", "Fecha Movimiento", "Nombre Sala", "Usuario"]]);
     } else {
       const worksheet = utils.json_to_sheet(formattedData); // Usamos los datos formateados
       const workbook = utils.book_new();

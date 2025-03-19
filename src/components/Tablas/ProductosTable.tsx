@@ -468,7 +468,7 @@ const ProductosTable = () => {
         </div>
       )}
       <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark  max-h-[85vh] overflow-x-scroll">
-        <TableHead>
+        <TableHead className='bg-amber-100/20 dark:bg-gray-400/20 border-b-2 border-black dark:border-white'>
         <SearchBar onSearch={handleSearch} tabla='productos'  color='green-400' />
           <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white ">
             <TableHeaderCell className='text-sm font-bold'>Código</TableHeaderCell>

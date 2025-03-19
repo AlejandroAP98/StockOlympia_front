@@ -10,6 +10,7 @@ interface ReporteMovimientoEntradas{
   valor_total: number | null;
   fecha_movimiento: string | null;
   nombre_sala: string | null,
+  nombre_usuario: string | null,
 }
 
 interface ReporteCardProps {
@@ -40,6 +41,7 @@ const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
             <TableHeaderCell>Valor Total</TableHeaderCell>
             <TableHeaderCell>Fecha Movimiento</TableHeaderCell>
             <TableHeaderCell>Nombre Sala</TableHeaderCell>
+            <TableHeaderCell>Usuario</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-sm text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white">
@@ -53,6 +55,7 @@ const ReporteCard = ({ reporteMovimientoEntradas }: ReporteCardProps) => {
               <TableCell>$ {formatearPrecio(r.valor_total)}</TableCell>
               <TableCell>{r.fecha_movimiento}</TableCell>
               <TableCell>{r.nombre_sala}</TableCell>
+              <TableCell>{r.nombre_usuario}</TableCell>
             </TableRow>
           ))}
         </TableBody>

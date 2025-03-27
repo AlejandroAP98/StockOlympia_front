@@ -120,6 +120,7 @@ const ProductosTable = () => {
 
       const data = await response.json();
       setProductos(data);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setError('Error al buscar productos');
     } finally {
@@ -224,10 +225,10 @@ const ProductosTable = () => {
       return;
     }
   
-    // Validar código de barras (solo números y entre 8-13 caracteres)
-    const isValidBarcode = /^\d{8,13}$/.test(trimmedCodigo);
+    // Validar código de barras (solo números y entre 6-13 caracteres)
+    const isValidBarcode = /^\d{6,13}$/.test(trimmedCodigo);
     if (!isValidBarcode) {
-      Swal.fire("El código de barras debe tener entre 8 y 13 dígitos numéricos", "Intenta nuevamente", "error");
+      Swal.fire("El código de barras debe tener entre 6 y 13 dígitos numéricos", "Intenta nuevamente", "error");
       return;
     }
   
@@ -258,6 +259,7 @@ const ProductosTable = () => {
         const errorText = await response.text();
         Swal.fire("Error al agregar el producto", errorText || "Intenta nuevamente", "error");
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       Swal.fire("Error al agregar el producto", "Intenta nuevamente", "error");
     }
@@ -276,6 +278,7 @@ const ProductosTable = () => {
         const data = await response.json();
         setNewProducto((prev) => ({ ...prev, codigo: data.codigo }));
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       Swal.fire("Error al obtener el último código escaneado", "Intenta nuevamente", "error");
     }

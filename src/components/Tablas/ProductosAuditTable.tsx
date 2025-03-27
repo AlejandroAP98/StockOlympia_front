@@ -113,9 +113,9 @@ const ProductosAudit = () => {
   };
   
   const formatearPrecio = (precio: number | null) => {
-    if (precio) {
+    if (precio !== null) {
       const precioSinDecimales = Math.floor(precio);
-      return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      return precioSinDecimales.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     } else {
       return 'No disponible';
     }
@@ -200,7 +200,7 @@ const ProductosAudit = () => {
         </div>
         <Table className="overflow-x-scroll max-h-[85vh] "> 
             <TableHead>
-                <SearchBar onSearch={handleSearch} color='amber-300' />
+                <SearchBar onSearch={handleSearch} tabla='auditoria' color='amber-300' />
                 <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white">
                   <TableHeaderCell
                       className={`text-sm font-bold ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
@@ -272,7 +272,7 @@ const ProductosAudit = () => {
                             )}
                         </TableCell>
                         <TableCell className='text-sm'>
-                            {"$ " + formatearPrecio(producto.precio)}
+                            {formatearPrecio(producto.precio)}
                         </TableCell>
                         <TableCell className='text-lg'>
                             {AlertStock(producto.cantidad)}

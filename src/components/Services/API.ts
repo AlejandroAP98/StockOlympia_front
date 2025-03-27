@@ -9,4 +9,7 @@ export const ROLES = import.meta.env.VITE_ROLES;
 export const MOVIMIENTOS = import.meta.env.VITE_MOVIMIENTOS;
 export const SALAS_PRODUCTOS = import.meta.env.VITE_SALAS_PRODUCTOS;
 export const REPORTE = import.meta.env.VITE_REPORTE;
-
+export const ULTIMO_CODIGO = import.meta.env.VITE_ULTIMO_CODIGO;
+export const GET_PRODUCTO_BY_CODE = import.meta.env.VITE_GET_PRODUCTO_BY_CODE;
+export const SALIDA_BY_CODE = import.meta.env.VITE_SALIDA_BY_CODE;
+export const ENTRADA_BY_CODE = import.meta.env.VITE_ENTRADA_BY_CODE;

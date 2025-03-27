@@ -200,7 +200,7 @@ export function MarcasTable() {
       )}
       <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
         <TableHead>
-          <SearchBar onSearch={handleSearch} color='blue-400' />
+          <SearchBar onSearch={handleSearch} tabla='marcas' color='blue-400' />
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
             <TableHeaderCell className='text-lg font-bold'>Descripción</TableHeaderCell>

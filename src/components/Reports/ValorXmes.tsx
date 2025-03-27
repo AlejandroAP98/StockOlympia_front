@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { API_BASE_URL, SALAS_PRODUCTOS } from '../Services/API.ts';
+import Money_bag from '../../assets/money-bag.png';
 
 interface InputProps {
   sala: number  | null;
@@ -46,9 +47,9 @@ const ValorTotalEntradasCard = ( { sala, year, month }: InputProps) => {
   }, [year, month, error,token, sala]);
 
   const formatearPrecio = (precio: number | null) => {
-    if (precio) {
+    if (precio !== null) {
       const precioSinDecimales = Math.floor(precio);
-      return precioSinDecimales.toLocaleString('es-ES', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+      return precioSinDecimales.toLocaleString('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 });
     } else {
       return 'Datos insuficientes';
     }
@@ -61,18 +62,19 @@ const ValorTotalEntradasCard = ( { sala, year, month }: InputProps) => {
   }
 
   return (
-    <div className="dark:text-textColor-dark bg-backgroundColor-table dark:bg-backgroundColor-dark absolute top-0 right-5  rounded-xl flex flex-col justify-center items-center px-4 py-2">
-      <h1 className="text-sm font-semibold text-textColor-light dark:text-textColor-dark ">
-        Ingresos Mes {meses[month - 1]} {year}
+    <div className="overflow-hidden dark:text-textColor-dark bg-amber-100/30 dark:bg-gray-400/20 absolute top-2 right-10  rounded-md flex flex-col justify-center px-4 py-2 border-[0.1px] border-black dark:border-white">
+      <h1 className="text-sm font-medium text-textColor-light dark:text-textColor-dark z-10 ">
+        Total ingresos en {meses[month - 1]} {year}
       </h1>
       {isLoading ? (
         <span className="mt-2 text-gray-500">Cargando...</span>
       ) : error ? (
         <span className="mt-2 text-red-500">{error}</span>
       ) : (
-        <span>
-          <span className="text-xl font-semibold text-black dark:text-textColor-dark">
-            $ {formatearPrecio(valorTotal)}
+        <span className='flex justify-between items-center gap-2 relative'>
+          <img src={Money_bag} alt="money-bag" className='w-[64px] h-[64px] absolute -z-1 -top-4 -left-4 opacity-80' />
+          <span className="text-[22px] font-light text-black dark:text-textColor-dark text-end w-full">
+            {formatearPrecio(valorTotal)}
           </span>
         </span>
       )}

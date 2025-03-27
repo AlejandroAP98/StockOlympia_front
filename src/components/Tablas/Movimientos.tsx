@@ -18,6 +18,7 @@ interface Movimiento {
   id: number;
   id_sala: number;
   cantidad: number;
+  nombre_usuario: string;
   tipo_movimiento: string;
   fecha_movimiento: string;
   nombre_producto: string;
@@ -67,7 +68,8 @@ const Movimientos = () => {
         setLoading(false);
       }
     };
-
+    console.log(movimientos);
+    console.log(salas);
     fetchSalas();
     fetchMovimientos();
   }, [token]);
@@ -94,40 +96,6 @@ const Movimientos = () => {
     if (salaSeleccionada === 'all') return true;
     if (salaSeleccionada === String(movimiento.id_sala)) return Number(salaSeleccionada) === movimiento.id_sala;
   };
-  
-  // const setFechaYhora = (fecha_movimiento: string): string => {
-
-  //   const [fecha, horaCompleta] = fecha_movimiento.split(", ");
-  //   const [hora, amPm] = horaCompleta.split(" ");
-  //   // Separar día, mes y año
-  //   const [dia, mes, anio] = fecha.split("/").map(Number);
-  //   // Separar horas, minutos y segundos
-  //   const [horas, minutos, segundos] = hora.split(":").map(Number);
-
-  //   // Ajustar la hora según el indicador a.m./p.m.
-  //   let horas24 = horas % 12; 
-  //   if (amPm.toLowerCase().replace(" ", "") === "p.m.") {
-  //     horas24 += 17; 
-  //   }else  {
-  //     horas24 += 5; 
-  //   }
-  
-  //   // Crear un objeto Date con la fecha ajustada
-  //   const fechaAjustada = new Date(anio, mes - 1, dia, horas24, minutos, segundos);
-  
-  //   // Ajustar la diferencia horaria (5 horas de diferencia)
-  //   fechaAjustada.setHours(fechaAjustada.getHours() + 0);
-  
-  //   // Formatear la fecha en el formato deseado
-  //   const diaFinal = String(fechaAjustada.getDate()).padStart(2, "0");
-  //   const mesFinal = String(fechaAjustada.getMonth() + 1).padStart(2, "0");
-  //   const anioFinal = fechaAjustada.getFullYear();
-  //   const horasFinal = String(fechaAjustada.getHours()).padStart(2, "0");
-  //   const minutosFinal = String(fechaAjustada.getMinutes()).padStart(2, "0");
-  //   const segundosFinal = String(fechaAjustada.getSeconds()).padStart(2, "0");
-  
-  //   return `${diaFinal}/${mesFinal}/${anioFinal}, ${horasFinal}:${minutosFinal}:${segundosFinal}`;
-  // };
   
    
   if (loading) return <Loader />;
@@ -187,6 +155,7 @@ const Movimientos = () => {
         <TableHead>
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             <TableHeaderCell className="text-sm font-bold">Sala</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold">Usuario</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Fecha y Hora</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Tipo</TableHeaderCell>
             <TableHeaderCell className="text-sm font-bold">Producto</TableHeaderCell>
@@ -203,6 +172,7 @@ const Movimientos = () => {
                 <TableCell>
                   {salas.find((sala) => sala.id === movimiento.id_sala)?.nombre}
                 </TableCell>
+                <TableCell className="text-pretty">{(movimiento.nombre_usuario)}</TableCell>
                 <TableCell className="text-pretty">{(movimiento.fecha_movimiento)}</TableCell>
                 <TableCell>
                   {movimiento.tipo_movimiento === 'entrada' ? (

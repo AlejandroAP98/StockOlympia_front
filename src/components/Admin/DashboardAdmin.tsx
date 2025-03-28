@@ -11,9 +11,11 @@ import SalasAudit from '../Audit/SalasAudit.tsx';
 import Stock from '../Tablas/ProductosAuditTable.tsx';
 import { ChangePassword } from '../Auth/ChangePassword.tsx';
 import Movimientos from '../Tablas/Movimientos.tsx';
+import { useAuth } from '../../context/AuthContext.tsx';
 
 export function DashboardAdmin() {
   const [activeView, setActiveView] = useState<string>("productos");
+  const {username} = useAuth();
   
   const renderContent = () => {
     switch (activeView) {
@@ -44,12 +46,13 @@ export function DashboardAdmin() {
 
   return (
     <main className="flex w-full">
+      <h1 className="text-[9px] dark:text-gray-300 text-gray-600 absolute flex mt-0 z-20 ml-16 font-light"> Bienvenido, {username}</h1>
       <div className="w-full h-screen bg-no-repeat absolute opacity-5 " style={{
         backgroundImage: `url(${background})`,
       }}>
       </div>
       <LateralNav setActiveView={setActiveView} />
-      <section className="flex-1 w-full ml-16 h-screen z-10 j ">
+      <section className="flex-1 w-full ml-16 h-screen z-10">
           {renderContent()}
       </section>
     </main>

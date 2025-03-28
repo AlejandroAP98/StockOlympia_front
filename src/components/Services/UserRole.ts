@@ -1,4 +1,4 @@
-// Define los roles en tu proyecto como un tipo o enumeración
-type UserRole = 'admin' | 'user' | 'auditor'; // Agrega más roles según necesites
+// Define los roles 
+type UserRole = 'admin' | 'user' | 'auditor';
 
 export default UserRole;

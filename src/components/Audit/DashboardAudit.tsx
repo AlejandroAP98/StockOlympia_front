@@ -6,10 +6,11 @@ import Background from '../../assets/background-login.jpg';
 import Reportes from '../Reports/Reportes.tsx';
 import { ChangePassword } from '../Auth/ChangePassword.tsx';
 import Movimientos from '../Tablas/Movimientos.tsx';
+import { useAuth } from '../../context/AuthContext.tsx';
 
 export function AuditInicio() {
-
   const [activeView, setActiveView] = useState<string>("salasAuditor");
+  const { username } = useAuth();
 
   const renderContent = () => {
     switch (activeView) {
@@ -30,6 +31,7 @@ export function AuditInicio() {
 
   return (
     <main className="flex w-full">
+      <h1 className="text-[9px] dark:text-gray-300 text-gray-600 absolute flex mt-0 z-20 ml-16 font-light"> Bienvenido, {username}</h1>
       <div className="w-full h-screen bg-no-repeat absolute opacity-5 " style={{
         backgroundImage: `url(${Background})`,
       }}>

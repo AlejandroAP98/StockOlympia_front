@@ -36,3 +36,5 @@ Permite controlar existencias, registrar movimientos de productos y gestionar ac
 - **Fetch API** con wrapper propio
 - **SweetAlert2** para notificaciones
 - **Vite** para desarrollo y build
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/AlejandroAP98/StockOlympia_front)

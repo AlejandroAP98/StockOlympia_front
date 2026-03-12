@@ -46,8 +46,8 @@ export function DashboardAdmin() {
 
   return (
     <main className="flex w-full">
-      <h1 className="text-[9px] dark:text-gray-300 text-gray-600 absolute flex mt-0 z-20 ml-16 font-light"> Bienvenido, {username}</h1>
-      <div className="w-full h-screen bg-no-repeat absolute opacity-5 " style={{
+      <h1 className="text-xs dark:text-gray-300 text-gray-600 absolute flex mt-0 z-20 ml-20 font-light"> Usuario: {username}</h1>
+      <div className="w-full h-screen bg-repeat-round absolute opacity-5 " style={{
         backgroundImage: `url(${background})`,
       }}>
       </div>

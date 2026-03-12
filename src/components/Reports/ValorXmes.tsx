@@ -62,7 +62,7 @@ const ValorTotalEntradasCard = ( { sala, year, month }: InputProps) => {
   }
 
   return (
-    <div className="overflow-hidden dark:text-textColor-dark bg-amber-100/30 dark:bg-gray-400/20 absolute top-2 right-10  rounded-md flex flex-col justify-center px-4 py-2 border-[0.1px] border-black dark:border-white">
+    <div className="overflow-hidden dark:text-textColor-dark bg-amber-100/30 dark:bg-gray-400/20 absolute top-12 right-10  rounded-md flex flex-col justify-center px-4 py-2 border-[0.1px] border-black dark:border-white">
       <h1 className="text-sm font-medium text-textColor-light dark:text-textColor-dark z-10 ">
         Total ingresos en {meses[month - 1]} {year}
       </h1>

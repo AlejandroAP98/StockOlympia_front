@@ -268,10 +268,10 @@ import {
           </aside>
           <Card className="  dark:text-textColor-dark h-full  ">
               <div className="flex w-full p-4 ">
-                  <h3 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase">Productos {sala?.nombre}</h3>
+                  <h3 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase py-4">Productos {sala?.nombre}</h3>
               </div>
-              <Table className="overflow-x-scroll max-h-[80vh] "> 
-                  <TableHead className='bg-backgroundColor-table dark:!border-white border !border-black dark:bg-backgroundColor-dark dark:text-textColor-dark '>
+              <Table className="overflow-x-scroll max-h-[85vh] "> 
+                  <TableHead className='bg-primary/60 dark:bg-gray-400/20 border-2 border-l-2 border-r-2 border-black dark:border-white'>
                     <SearchBar onSearch={handleSearch} tabla='salaauditoria' color='amber-300' />
                     <ValorTotalEntradasCard  sala={sala?.id ?? 0} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
                     <TableRow className="text-textColor-light dark:text-textColor-dark ">
@@ -295,11 +295,11 @@ import {
                             </div>
                         )}
                       </TableHeaderCell>
-                      <TableHeaderCell className='text-sm font-bold'>Categoria</TableHeaderCell>
-                      <TableHeaderCell className='text-sm font-bold'>Marca</TableHeaderCell>
-                      <TableHeaderCell className='text-sm font-bold'>Precio und.</TableHeaderCell>
+                      <TableHeaderCell className='text-md font-bold uppercase'>Categoria</TableHeaderCell>
+                      <TableHeaderCell className='text-md font-bold uppercase'>Marca</TableHeaderCell>
+                      <TableHeaderCell className='text-md font-bold uppercase'>Precio und.</TableHeaderCell>
                       <TableHeaderCell
-                        className={`text-sm font-bold ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+                        className={`text-md font-bold uppercase ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
                         onClick={() => handleSort('cantidad')}
                       >
                         <span>Stock</span>
@@ -323,10 +323,10 @@ import {
                   <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white ">
                       {sortedProductos.map((producto) => (
                           <TableRow key={producto.  id} className='text-sm'>
-                              <TableCell className='text-pretty'>
+                              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                                   {producto.nombre}
                               </TableCell>
-                              <TableCell>
+                              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                                   {producto.id_categoria ? (
                                       <span className={`${coloresCategorias[producto.id_categoria]} text-white rounded-full px-2 py-1 text-sm`}>
                                           {categorias.find((categoria) => categoria.id === producto.id_categoria)?.nombre}
@@ -335,7 +335,7 @@ import {
                                       <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin categoría</span>
                                   )}
                               </TableCell>
-                              <TableCell>
+                              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                                   {producto.id_marca ? (
                                       <span className="border border-gray-400 rounded px-2 py-1 text-sm">
                                           {marcas.find((marca) => marca.id === producto.id_marca)?.nombre}
@@ -344,10 +344,10 @@ import {
                                       <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin marca</span>
                                   )}
                               </TableCell>
-                              <TableCell>
+                              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                                   {formatearPrecio(producto.precio)}
                               </TableCell>
-                              <TableCell>
+                              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                                   {AlertStock(producto.cantidad)}
                               </TableCell>
                           </TableRow>

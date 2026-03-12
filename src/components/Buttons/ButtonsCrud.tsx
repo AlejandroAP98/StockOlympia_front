@@ -25,7 +25,7 @@ const EditButton = ({ onClick }: ButtonProps) => {
             <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
         </svg>
         <span className="absolute bottom-8 -left-2 scale-0 rounded bg-gray-800/80 p-2 text-xs text-white 
-        group-hover:scale-100 group-hover:delay-[1500ms] group-hover:duration-300 
+        group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
         group-not-hover:delay-0 group-not-hover:duration-300">
           Editar
         </span>
@@ -44,7 +44,7 @@ const DeleteButton = ({ onClick }:ButtonProps) => {
               <path fillRule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clipRule="evenodd" />
           </svg>
           <span className="absolute bottom-8 -left-4 scale-0 rounded bg-gray-800/80 p-2 text-xs text-white 
-          group-hover:scale-100 group-hover:delay-[1500ms] group-hover:duration-300 
+          group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
           group-not-hover:delay-0 group-not-hover:duration-300">
             Eliminar
           </span>
@@ -61,7 +61,7 @@ const AddButton = ({ onClick }: ButtonProps) => {
           <path fillRule="evenodd" d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
         </svg>
         <span className="absolute bottom-7 -left-3 scale-0 rounded bg-gray-800/80 p-2 text-xs text-white 
-        group-hover:scale-100 group-hover:delay-[1500ms] group-hover:duration-300 
+        group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
         group-not-hover:delay-0 group-not-hover:duration-300">
           Agregar
         </span>
@@ -154,7 +154,7 @@ const IngresarButton = ({ onClick }: ButtonProps) => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
         <span className="absolute bottom-8 -left-14 scale-0 rounded bg-gray-800/80 p-2 text-xs text-white 
-        group-hover:scale-100 group-hover:delay-[1500ms] group-hover:duration-300 
+        group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
         group-not-hover:delay-0 group-not-hover:duration-300">
           Ingresar producto a sala
         </span>
@@ -171,7 +171,7 @@ const SalidaButton = ({ onClick }: ButtonProps) => {
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
         </svg>
         <span className="absolute bottom-6 -left-14 scale-0 rounded bg-gray-800/80 p-2 text-xs text-white 
-        group-hover:scale-100 group-hover:delay-[1500ms] group-hover:duration-300 
+        group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
         group-not-hover:delay-0 group-not-hover:duration-300">
           Hacer salida de producto
         </span>
@@ -192,7 +192,7 @@ const ObtenerCodigoButton = ({ onClick }: ButtonProps) => {
           <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z" />
         </svg>
         <span className="absolute top-12 -left-2 scale-0 transition-all rounded bg-gray-800/80 p-2 text-xs text-white 
-          group-hover:scale-100 group-hover:delay-[2000ms] group-hover:duration-300 
+          group-hover:scale-100 group-hover:delay-[500ms] group-hover:duration-300 
           group-not-hover:delay-0 group-not-hover:duration-300">
           Obtener último código escaneado
         </span>

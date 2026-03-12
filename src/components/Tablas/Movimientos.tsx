@@ -68,8 +68,6 @@ const Movimientos = () => {
         setLoading(false);
       }
     };
-    console.log(movimientos);
-    console.log(salas);
     fetchSalas();
     fetchMovimientos();
   }, [token]);
@@ -108,7 +106,7 @@ const Movimientos = () => {
   return (
     <Card className="dark:text-textColor-dark h-full">
       <div className="flex flex-col w-full ">
-        <h3 className="text-textColor-light dark:text-textColor-dark text-xl font-bold text-center w-full uppercase">
+        <h3 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase py-4">
           Movimientos
         </h3>
         <div className="flex gap-4 justify-center items-center">
@@ -151,18 +149,18 @@ const Movimientos = () => {
           )}
         </div>
       </div>
-      <Table className="overflow-x-scroll rounded-xl max-h-[85vh]">
-        <TableHead>
+      <Table className="overflow-x-scroll max-h-[85vh] border rounded-none p-4 my-4 border-none dark:bg-gray-800">
+        <TableHead className='border-b-2 border-black bg-gray-200 border dark:bg-gray-800 dark:border-white'>
           <TableRow className="text-textColor-light dark:text-textColor-dark">
-            <TableHeaderCell className="text-sm font-bold">Sala</TableHeaderCell>
-            <TableHeaderCell className="text-sm font-bold">Usuario</TableHeaderCell>
-            <TableHeaderCell className="text-sm font-bold">Fecha y Hora</TableHeaderCell>
-            <TableHeaderCell className="text-sm font-bold">Tipo</TableHeaderCell>
-            <TableHeaderCell className="text-sm font-bold">Producto</TableHeaderCell>
-            <TableHeaderCell className="text-sm font-bold">Cantidad</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Sala</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Usuario</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Fecha y Hora</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Tipo</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Producto</TableHeaderCell>
+            <TableHeaderCell className="text-sm font-bold uppercase">Cantidad</TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody className="dark:text-textColor-dark text-black text-sm font-[400] justify-center items-center">
+        <TableBody className="dark:text-textColor-dark text-black text-sm font-[400] justify-center items-center border border-black">
           {movimientos
             .filter((movimiento) => (id_rol === 2  ? movimiento.id_sala === sala : true))
             .filter(filtrarPorFecha)

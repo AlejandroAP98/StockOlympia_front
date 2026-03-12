@@ -223,14 +223,15 @@ export function UserTable() {
   if (error) return <div className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full">{error}</div>;
 
   return (
-    <Card className=" bg-backgroundColor-table dark:bg-backgroundColor-dark dark:text-textColor-dark max-w-[95vw] h-auto">  
+    
+    <Card className=" bg-backgroundColor-table  dark:bg-backgroundColor-dark dark:text-textColor-dark max-w-[95vw] h-auto">  
       <div className="flex w-full px-10 ">
-        <h3 className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full ">Lista de Usuarios</h3>
+        <h3 className="text-textColor-light dark:text-textColor-dark font-bold text-2xl text-center w-full uppercase py-2 ">Lista de Usuarios</h3>
         <AddButton onClick={() => setIsAdding(true)} />
       </div>
       {isAdding && (
-        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-20 left-5 top-0">
-          <h4 className="text-lg font-semibold">Agrega un nuevo usuario</h4>
+        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[97%] z-20 left-5 top-0 shadow-2xl">  
+          <h1 className="text-2xl font-semibold text-center">Agrega un nuevo usuario</h1>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full  ">
             <Input
               value={newUser.nombre}
@@ -289,27 +290,27 @@ export function UserTable() {
           </div>
         </div>
       )}
-      <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
-        <TableHead>
+      <Table className="bg-backgroundColor-table border my-4 border-black dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
+        <TableHead className='border-b border-black bg-gray-200 dark:bg-gray-800'>
           <TableRow className="text-textColor-light dark:text-textColor-dark">
             {isEditing ? (
               <>
-                <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Email</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Nombre de usuario</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Rol</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Sala</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Contraseña</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Acciones</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Nombre</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Email</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Nombre de usuario</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Rol</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Sala</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Contraseña</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Acciones</TableHeaderCell>
               </>
             ) : (
               <>
-                <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Email</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Nombre de usuario</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Rol</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Sala</TableHeaderCell>
-                <TableHeaderCell className='text-lg font-bold'>Acciones</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Nombre</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Email</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Nombre de usuario</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Rol</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Sala</TableHeaderCell>
+                <TableHeaderCell className='text-md font-bold uppercase'>Acciones</TableHeaderCell>
               </>
             )}
           </TableRow>
@@ -319,7 +320,7 @@ export function UserTable() {
             <TableRow key={user.id} className='dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10 text-sm'>
              {isEditing ? (
                 <>
-                  <TableCell className='text-pretty'>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.nombre}
@@ -332,7 +333,7 @@ export function UserTable() {
                       user.nombre
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.email}
@@ -345,7 +346,7 @@ export function UserTable() {
                       user.email
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.usuario}
@@ -358,7 +359,7 @@ export function UserTable() {
                       user.usuario
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <select
                         name='id_rol'
@@ -376,7 +377,7 @@ export function UserTable() {
                       user.id_rol ? roles.find( (rol) => rol.id === user.id_rol)?.rol : 'no rol'
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <select
                         name="id_sala"
@@ -394,7 +395,7 @@ export function UserTable() {
                       user.id_sala ? salas.find( (sala) => sala.id === user.id_sala)?.nombre : 'no sala'
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.contrasena}
@@ -407,23 +408,23 @@ export function UserTable() {
                       user.contrasena 
                     )}
                   </TableCell>
-                  <TableCell className='gap-4 flex items-center h-full w-fit '>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black '>
                     {editingId === user.id ? (
-                      <>
+                      <div className='flex'>
                         <SaveButton onClick={handleSave} />
                         <CancelButton onClick={handleCancel} />
-                      </>
+                      </div>
                     ) : (
-                      <>
+                      <div className='flex'>
                         <EditButton onClick={() => handleEdit(user)} />
                         <DeleteButton onClick={() => handleDelete(user.id)} />
-                      </>
+                      </div>
                     )}
                   </TableCell>
                 </>
               ) : (
                 <>
-                  <TableCell className='text-pretty'>
+                  <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.nombre}
@@ -436,7 +437,7 @@ export function UserTable() {
                       user.nombre
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.email}
@@ -449,7 +450,7 @@ export function UserTable() {
                       user.email
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <Input
                         value={editedUser.usuario}
@@ -462,7 +463,7 @@ export function UserTable() {
                       user.usuario
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <select
                         name='id_rol'
@@ -480,7 +481,7 @@ export function UserTable() {
                       user.id_rol ? roles.find( (rol) => rol.id === user.id_rol)?.rol : 'no rol'
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black'>
                     {editingId === user.id ? (
                       <select
                         name="id_sala"
@@ -498,17 +499,17 @@ export function UserTable() {
                       user.id_sala ? salas.find( (sala) => sala.id === user.id_sala)?.nombre : 'no sala'
                     )}
                   </TableCell>
-                  <TableCell className='gap-4 flex items-center h-full w-fit '>
+                  <TableCell className='border-b border-r-0 border-l-0 border-black '>
                     {editingId === user.id ? (
-                      <>
+                      <div className='flex'>
                         <SaveButton onClick={handleSave} />
                         <CancelButton onClick={handleCancel} />
-                      </>
+                      </div>
                     ) : (
-                      <>
+                      <div className='flex'>
                         <EditButton onClick={() => handleEdit(user)} />
                         <DeleteButton onClick={() => handleDelete(user.id)} />
-                      </>
+                      </div>
                     )}
                   </TableCell>
                 </>

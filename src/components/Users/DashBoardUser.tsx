@@ -27,7 +27,7 @@ export function DashboardUser() {
   return (
     <main className="flex w-full">
       <h1 className="text-[9px] dark:text-gray-300 text-gray-600 absolute flex mt-0 z-20 ml-16 font-light"> Bienvenido, {useAuth().username}</h1>
-      <div className="w-full h-screen bg-no-repeat absolute opacity-5 " style={{
+      <div className="w-full h-screen bg-repeat-round absolute opacity-5 " style={{
         backgroundImage: `url(${background})`,
       }}>
       </div>

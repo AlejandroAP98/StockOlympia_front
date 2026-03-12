@@ -392,23 +392,23 @@ const ProductosTable = () => {
   if (loading) return <Loader />;
   if (error) return <div className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center h-screen w-full">{error}</div>;
   return (
-    <Card className=" bg-backgroundColor-table dark:bg-backgroundColor-dark dark:text-textColor-dark h-full ">                    
-      <div className="flex w-full p-4">
+    <Card className=" bg-backgroundColor-table dark:bg-backgroundColor-dark dark:text-textColor-dark h-full ">
+      <h1 className="text-textColor-light dark:text-textColor-dark font-bold text-2xl text-center w-full uppercase">Lista de Productos</h1>                    
+      <div className="flex w-full p-4 justify-end">
         {id_rol === 1 &&
           <>
-            <h3 className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full">Lista de Productos</h3>
             <AddButton onClick={() => setIsAdding(true)} />
           </>
         }
         {id_rol === 2 &&
           <>
-            <h3 className="text-green-400 dark:text-textColor-dark font-semibold text-xl text-center uppercase w-full">Ingreso de Productos A Sala 🏦</h3>
+            <h3 className="text-green-600 dark:text-textColor-dark font-semibold text-xl text-center uppercase w-full">Ingreso de Productos A Sala</h3>
           </>
         }
       </div>
       {isAdding && ( 
-        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-20 left-5 top-0">                    
-          <h4 className="text-lg font-semibold">Agrega un nuevo producto</h4>
+        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[97%] z-20 left-5 top-0 shadow-2xl">                    
+          <h4 className="text-2xl text-center font-semibold">Agrega un nuevo producto</h4>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full">
             {/* Código de barras */}
                 <Input
@@ -471,12 +471,12 @@ const ProductosTable = () => {
         </div>
       )}
       <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark  max-h-[85vh] overflow-x-scroll">
-        <TableHead className='bg-amber-100/20 dark:bg-gray-400/20 border-b-2 border-black dark:border-white'>
+        <TableHead className='bg-primary/60 dark:bg-gray-400/20 border border-l-2 border-r-2 border-black dark:border-white'>
         <SearchBar onSearch={handleSearch} tabla='productos'  color='green-400' />
-          <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white ">
-            <TableHeaderCell className='text-sm font-bold'>Código</TableHeaderCell>
+          <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white  ">
+            <TableHeaderCell className='text-sm font-bold uppercase'>Código</TableHeaderCell>
             <TableHeaderCell
-              className={`text-sm font-bold ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+              className={`text-sm font-bold uppercase ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
               onClick={() => handleSort('nombre')}
             >
               <span>Nombre</span>
@@ -495,10 +495,10 @@ const ProductosTable = () => {
                   </div>
               )}
             </TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Categoria</TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Marca</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Categoria</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Marca</TableHeaderCell>
             <TableHeaderCell
-              className={`text-sm font-bold ${sortColumn === 'precio' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+              className={`text-sm font-bold uppercase ${sortColumn === 'precio' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
               onClick={() => handleSort('precio')}
             >
               <span>Precio</span>
@@ -517,13 +517,13 @@ const ProductosTable = () => {
                   </div>
               )}
             </TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>{id_rol ===1 ? 'Acciones' : 'Ingresar'}</TableHeaderCell>
+            <TableHeaderCell className='text-sm uppercase font-bold'>{id_rol ===1 ? 'Acciones' : 'Ingresar'}</TableHeaderCell>
           </TableRow>
         </TableHead>
-        <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white ">
+        <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border-2 border-black dark:!border-white ">
           {sortedProductos.map((producto) => (
             <TableRow key={producto.id} className='dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>                      
-              <TableCell className='text-sm'>
+              <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                 {editingId === producto.id ? (
                   <InputFila
                     value={editedProducto.codigo}
@@ -536,7 +536,7 @@ const ProductosTable = () => {
                   producto.codigo
                 )}
               </TableCell>
-              <TableCell className='text-pretty text-sm'>                  
+              <TableCell className='text-pretty text-sm border-b border-r-0 border-l-0 border-black'>                  
                 {editingId === producto.id ? (
                   <InputFila
                     value={editedProducto.nombre}
@@ -549,13 +549,13 @@ const ProductosTable = () => {
                   producto.nombre
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='border-b border-r-0 border-l-0 border-black'>
                 {editingId === producto.id ? (                  
                   <select
                     name='id_categoria'
                     value={editedProducto.id_categoria || ''}
                     onChange={handleInputChange}
-                    className="dark:text-textColor-dark dark:bg-tremor-content-strong text-black text-balance text-ellipsis overflow-hidden font-[200] border-b-1 focus:border-amber-500 focus:ring-amber-500 rounded-lg w-fit " >
+                    className="dark:text-textColor-dark  dark:bg-tremor-content-strong text-black text-balance text-ellipsis overflow-hidden font-[200] border-b-1 focus:border-amber-500 focus:ring-amber-500 rounded-lg w-fit " >
                     <option value="">Selecciona...</option>
                     {categorias.map((categoria) => (
                       <option key={categoria.id} value={categoria.id}>{categoria.nombre}</option>
@@ -571,7 +571,7 @@ const ProductosTable = () => {
                   )
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='border-b border-r-0 border-l-0 border-black'>
                 {editingId === producto.id ? (                  
                   <select
                     name='id_marca'
@@ -593,7 +593,7 @@ const ProductosTable = () => {
                   )
                 )}
               </TableCell>
-              <TableCell className='text-sm'>
+              <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                 {editingId === producto.id ? (
                   <InputFila
                     value={editedProducto.precio?.toString()}
@@ -606,21 +606,24 @@ const ProductosTable = () => {
                     formatearPrecio(producto.precio)
                 )}
               </TableCell>
-              <TableCell className='gap-4 flex items-center h-full w-fit '>
+              <TableCell className='border-b border-r-0 border-l-0 border-black  '>
                 {editingId === producto.id ? (                  
-                  <>
+                  <div className='flex'>
                     <SaveButton onClick={handleSave} />
                     <CancelButton onClick={handleCancel} />
-                  </>
+                  </div>
                 ) : (
                   <>
                     {id_rol === 1 ? (
-                    <>
+                    <div className='flex'>
                       <EditButton onClick={() => handleEdit(producto)} />
                       <DeleteButton onClick={() => handleDelete(producto.id)} />  
-                    </>
+                    </div>
                     ) : (
-                      <IngresarButton onClick={() => handleIngresar(producto)} />
+                      <div>
+                        <IngresarButton onClick={() => handleIngresar(producto)} />
+                      </div>
+                      
                     )}
                   </>
                 )}

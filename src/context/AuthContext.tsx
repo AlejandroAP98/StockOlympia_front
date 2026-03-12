@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
         const response = await axios.post(`${API_BASE_URL}${LOGIN}`, { usuario, contrasena: password });
         const { token, sala, rol, user_id, username } = response.data;
+        console.log(response.data);
         setToken(token);
         setRol(rol);
         setSala(sala);
@@ -96,8 +97,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         setLoading(false); 
     }, []);
-    
-
+ 
     return (
         <AuthContext.Provider value={{ login, logout, token, user, sala, id_rol, loading, user_id, username }}>
             {children}

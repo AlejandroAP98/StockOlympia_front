@@ -170,12 +170,12 @@ export function MarcasTable() {
   return (
     <Card className=" bg-backgroundColor-table dark:bg-backgroundColor-dark dark:text-textColor-dark max-w-[95vw] h-auto">                    
       <div className="flex w-full px-10 ">
-        <h3 className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full">Lista de Marcas</h3>
+        <h3 className="text-textColor-light dark:text-textColor-dark font-bold text-2xl text-center w-full uppercase py-6 ">Lista de Marcas</h3>
         <AddButton onClick={() => setIsAdding(true)} />
       </div>
       {isAdding && (
-        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-20 left-5 top-0">
-          <h4 className="text-lg font-semibold">Agrega una nueva marca</h4>
+        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[97%] z-20 left-5 top-0 shadow-2xl">
+          <h1 className="text-2xl font-semibold text-center">Agrega una nueva marca</h1>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full ">
             <Input
               value={newMarca.nombre}
@@ -198,19 +198,19 @@ export function MarcasTable() {
             </div>
           </div>
       )}
-      <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
-        <TableHead>
+      <Table className="bg-backgroundColor-table border my-4 border-black dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
+        <TableHead className='border-b border-black bg-gray-200 dark:bg-gray-800'>
           <SearchBar onSearch={handleSearch} tabla='marcas' color='blue-400' />
           <TableRow className="text-textColor-light dark:text-textColor-dark">
-            <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Descripción</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Acciones</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Nombre</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Descripción</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Acciones</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center">
           {marcas.map((marca) => (
             <TableRow key={marca.id} className='text-sm dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>
-              <TableCell className='text-pretty'>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === marca.id ? (
                   <InputFila
                     value={editedMarca.nombre}
@@ -223,7 +223,7 @@ export function MarcasTable() {
                   marca.nombre
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === marca.id ? (
                   <InputFila
                     value={editedMarca.descripcion}
@@ -236,17 +236,17 @@ export function MarcasTable() {
                   marca.descripcion
                 )}
               </TableCell>
-              <TableCell className='gap-4 flex items-center h-full w-fit'>
+              <TableCell className='border-b border-r-0 border-l-0 border-black '>
                 {editingId === marca.id ? (
-                  <>
+                  <div className='flex'>
                     <SaveButton onClick={handleSave} />
                     <CancelButton onClick={handleCancel} />
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className='flex'>
                     <EditButton onClick={() => handleEdit(marca)} />
                     <DeleteButton onClick={() => handleDelete(marca.id)} />
-                  </>
+                  </div>
                 )}
               </TableCell>
             </TableRow>

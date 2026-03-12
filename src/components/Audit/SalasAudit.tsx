@@ -55,9 +55,9 @@ const DashboardAudit = () => {
     if (error) return <div className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center h-screen w-full">{error}</div>;
     return (
       <>
-        <h1 className="text-amber-300 dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase ">Salas</h1>
+        <h1 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase ">Salas</h1>
         <div className="flex flex-col justify-center items-center">
-            <h2 className="text-textColor-light dark:text-textColor-dark text-xl font-bold text-center w-full p-4">Seleccione una sala para ver su stock de productos actuales 🎰</h2>
+            <h2 className="text-textColor-light dark:text-textColor-dark text-xl font-semiblod text-center w-full p-4">Seleccione una sala para ver su stock de productos actuales</h2>
             <div className="flex flex-wrap gap-8 justify-center items-center">
             {salas.map((sala) => (            
                 <CardSalas key={sala.id} sala={sala} onClick={() => handleClick(sala)} />

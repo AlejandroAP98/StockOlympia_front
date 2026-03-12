@@ -21,7 +21,7 @@ const Home: React.FC = () => {
     }, [navigate]);
 
     return (
-        <div className='w-full h-screen bg-no-repeat' style={{ background: 'black' }}>
+        <div className='w-full h-screen bg-repeat-round' style={{ background: 'black' }}>
             <div className='flex h-screen justify-around items-center flex-col'>
                 <img 
                     src={logo} 

@@ -148,12 +148,12 @@ export function SalaTable() {
   return (
     <Card className=" bg-backgroundColor-table dark:bg-backgroundColor-dark dark:text-textColor-dark max-w-[95vw] h-auto">                    
       <div className="flex w-full px-10 ">
-        <h3 className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center w-full">Lista de Salas</h3>
+        <h3 className="text-textColor-light dark:text-textColor-dark font-bold text-2xl text-center w-full uppercase py-6 ">Lista de Salas</h3>
         <AddButton onClick={() => setIsAdding(true)} />
       </div>
       {isAdding && (
-        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[95%] z-20 left-5 top-0">
-          <h4 className="text-lg font-semibold">Agrega una nueva sala</h4>
+        <div className="mt-5 p-4 border rounded-xl bg-backgroundColor-light dark:bg-backgroundColor-dark dark:text-textColor-dark absolute w-[97%] z-20 left-5 top-0 shadow-2xl">
+          <h1 className="text-2xl font-semibold text-center">Agrega una nueva sala</h1>
           <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 mt-2 w-full ">
             <Input
               value={newSala.nombre}
@@ -186,20 +186,20 @@ export function SalaTable() {
           </div>
         </div>
       )}
-      <Table className="bg-backgroundColor-table dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
-        <TableHead>
-          <TableRow className="text-textColor-light dark:text-textColor-dark">
-            <TableHeaderCell className='text-lg font-bold'>Nombre</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Dirección</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Número de maquinas</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Municipio</TableHeaderCell>
-            <TableHeaderCell className='text-lg font-bold'>Acciones</TableHeaderCell>
+      <Table className="bg-backgroundColor-table border my-4 border-black dark:bg-backgroundColor-dark max-h-[86vh] overflow-x-scroll">
+        <TableHead className='border-b border-black bg-gray-200 dark:bg-gray-800'>
+        <TableRow className="text-textColor-light">
+            <TableHeaderCell className='text-md font-bold uppercase'>Nombre</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Dirección</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Número de maquinas</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Municipio</TableHeaderCell>
+            <TableHeaderCell className='text-md font-bold uppercase'>Acciones</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center">
           {salas.map((sala) => (
             <TableRow key={sala.id} className='text-sm dark:hover:bg-backgroundColor-dark dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10'>
-              <TableCell className='text-pretty'>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === sala.id ? (
                   <Input
                     value={editedSala.nombre}
@@ -212,7 +212,7 @@ export function SalaTable() {
                   sala.nombre
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === sala.id ? (
                   <Input
                     value={editedSala.direccion}
@@ -225,7 +225,7 @@ export function SalaTable() {
                   sala.direccion
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === sala.id ? (
                   <Input
                     value={editedSala.numero_maquinas?.toString()}
@@ -238,7 +238,7 @@ export function SalaTable() {
                   sala.numero_maquinas
                 )}
               </TableCell>
-              <TableCell>
+              <TableCell className='text-pretty border-b border-r-0 border-l-0 border-black'>
                 {editingId === sala.id ? (
                   <Input
                     value={editedSala.municipio}
@@ -251,17 +251,17 @@ export function SalaTable() {
                   sala.municipio
                 )}
               </TableCell>
-              <TableCell className='gap-4 flex items-center h-full w-fit'>
+              <TableCell className='border-b border-r-0 border-l-0 border-black '>
                 {editingId === sala.id ? (
-                  <>
+                  <div className='flex'>
                     <SaveButton onClick={handleSave} />
                     <CancelButton onClick={handleCancel} />
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className='flex'>
                     <EditButton onClick={() => handleEdit(sala)} />
                     <DeleteButton onClick={() => handleDelete(sala.id)} />
-                  </>
+                  </div>
                 )}
               </TableCell>
             </TableRow>

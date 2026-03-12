@@ -286,17 +286,15 @@ const ProductosSalaTable = () => {
   if (error) return <div className="text-textColor-light dark:text-textColor-dark font-semibold text-xl text-center h-screen w-full">{error}</div>;
   return (
     <Card className="  dark:text-textColor-dark h-full bg-white/70 ">
-      <div className="flex w-full p-4 ">
-        <h3 className="text-amber-400 dark:text-textColor-dark text-xl font-semibold text-center w-full uppercase">Productos {salas?.nombre}🎰</h3>
-      </div>
+      <h3 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase pb-16">Productos {salas?.nombre}</h3>
       <Table className="overflow-x-scroll max-h-[85vh] ">
-        <TableHead className='bg-amber-100/20 dark:bg-gray-400/20 border-b-2 border-black dark:border-white'>
-          <SearchBar onSearch={handleSearch} tabla='productos' color='amber-300' />
+        <TableHead className='bg-green-400 dark:bg-gray-400/20 border border-b-2 border-l-2 border-r-2 border-black dark:border-white'>
+          <SearchBar onSearch={handleSearch} tabla='productos' color='green-400' />
           <ValorTotalEntradasCard sala={sala} year={new Date().getFullYear()} month={new Date().getMonth() + 1} />
           <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white">
-            <TableHeaderCell className='text-sm font-bold'>Código</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Código</TableHeaderCell>
             <TableHeaderCell
-              className={`text-sm font-bold ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+              className={`text-sm font-bold uppercase ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
               onClick={() => handleSort('nombre')}
             >
               <span>Nombre</span>
@@ -315,14 +313,14 @@ const ProductosSalaTable = () => {
                   </div>
               )}              
             </TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Categoria</TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Marca</TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Precio Und.</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Categoria</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Marca</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Precio Und.</TableHeaderCell>
             <TableHeaderCell 
-              className={`text-sm font-bold ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+              className={`text-sm font-bold uppercase ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
               onClick={() => handleSort('cantidad')}
             >
-              <span>Stock</span>
+              <span className='uppercase'>Stock</span>
               {sortColumn === 'cantidad' && (
                 sortOrder === 'asc' ? 
                   <div className='flex items-center h-0 absolute right-0 '>
@@ -338,19 +336,19 @@ const ProductosSalaTable = () => {
                   </div>
               )}
             </TableHeaderCell>
-            <TableHeaderCell className='text-sm font-bold'>Salida</TableHeaderCell>
+            <TableHeaderCell className='text-sm font-bold uppercase'>Salida</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white ">
             {sortedProductos.map((producto) => (
               <TableRow key={producto.id} className='dark:hover:bg-backgroundColor-tableUserDark/5 dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10 '>
-                <TableCell className='text-pretty text-sm'>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                   {producto.codigo}
                 </TableCell>
-                <TableCell className='text-pretty text-sm'>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                   {producto.nombre}
                 </TableCell>
-                <TableCell>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                   {producto.id_categoria ? (
                     <span className={`${coloresCategorias[producto.id_categoria]} text-white rounded-full px-2 py-1 text-sm`}>
                       {categorias.find((categoria) => categoria.id === producto.id_categoria)?.nombre}
@@ -359,7 +357,7 @@ const ProductosSalaTable = () => {
                     <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin categoría</span>
                   )}
                 </TableCell>
-                <TableCell>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                   {producto.id_marca ? (
                     <span className="border border-gray-400 rounded px-2 py-1 text-sm">
                       {marcas.find((marca) => marca.id === producto.id_marca)?.nombre}
@@ -368,14 +366,16 @@ const ProductosSalaTable = () => {
                     <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin marca</span>
                   )}
                 </TableCell>
-                <TableCell className='text-sm'>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                   {formatearPrecio(producto.precio)}
                 </TableCell>
-                <TableCell>
+                <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                     {AlertStock(producto.cantidad)}
                 </TableCell >
-                <TableCell className='gap-4 flex items-center h-full w-fit '>
-                  <SalidaButton onClick={() => handleSalida(producto)} />
+                <TableCell className='border-b border-r-0 border-l-0 border-black'>
+                  <div className='gap-4 flex items-center h-full w-fit '>
+                    <SalidaButton onClick={() => handleSalida(producto)} />
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

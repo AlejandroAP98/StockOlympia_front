@@ -196,14 +196,14 @@ const ProductosAudit = () => {
     <>
       <Card className="  dark:text-textColor-dark h-full ">
         <div className="flex w-full p-4 ">
-            <h3 className="text-amber-300 dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase ">Productos Totales</h3>
+            <h3 className="text-textColor-light dark:text-textColor-dark text-2xl font-bold text-center w-full uppercase py-4 ">Productos Totales en stock</h3>
         </div>
         <Table className="overflow-x-scroll max-h-[85vh] "> 
-            <TableHead>
+            <TableHead className='bg-green-400 dark:bg-gray-400/20 border border-b-2 border-l-2 border-r-2 border-black dark:border-white'>
                 <SearchBar onSearch={handleSearch} tabla='auditoria' color='amber-300' />
                 <TableRow className="text-textColor-light dark:text-textColor-dark border !border-black dark:!border-white">
                   <TableHeaderCell
-                      className={`text-sm font-bold ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+                      className={`text-sm font-bold uppercase ${sortColumn === 'nombre' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
                       onClick={() => handleSort('nombre')}
                     >
                       <span>Nombre</span>
@@ -222,11 +222,11 @@ const ProductosAudit = () => {
                           </div>
                       )}
                     </TableHeaderCell> 
-                    <TableHeaderCell className='text-sm font-bold'>Categoria</TableHeaderCell>
-                    <TableHeaderCell className='text-sm font-bold'>Marca</TableHeaderCell>
-                    <TableHeaderCell className='text-sm font-bold'>Precio Und.</TableHeaderCell>
+                    <TableHeaderCell className='text-sm font-bold uppercase'>Categoria</TableHeaderCell>
+                    <TableHeaderCell className='text-sm font-bold uppercase'>Marca</TableHeaderCell>
+                    <TableHeaderCell className='text-sm font-bold uppercase'>Precio Und.</TableHeaderCell>
                     <TableHeaderCell  
-                      className={`text-sm font-bold ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
+                      className={`text-sm font-bold uppercase ${sortColumn === 'cantidad' ? 'text-gray-900' : ''} cursor-pointer flex items-center space-x-1 relative`}
                       onClick={() => handleSort('cantidad')}
                     >
                       <span>Stock</span>
@@ -250,10 +250,10 @@ const ProductosAudit = () => {
             <TableBody className="dark:text-textColor-dark text-black text-lg text-ellipsis overflow-hidden text-pretty font-[400] justify-center items-center border !border-black dark:!border-white ">
                 {sortedProductos.map((producto) => ( 
                     <TableRow key={producto.id} className='dark:hover:bg-backgroundColor-tableUserDark/5 dark:hover:text-textColor-dark hover:bg-accent-light/5 hover:text-textColor-light dark:bg-tremor-content-strong/10 '>
-                        <TableCell className='text-pretty text-sm'>
+                        <TableCell className='text-pretty text-sm border-b border-r-0 border-l-0 border-black'>
                             {producto.nombre}
                         </TableCell>
-                        <TableCell className='text-xs'>
+                        <TableCell className='text-xs border-b border-r-0 border-l-0 border-black'>
                             {producto.id_categoria ? (
                                 <span className={`${coloresCategorias[producto.id_categoria]} text-white rounded-full px-2 py-1 text-sm`}>
                                     {categorias.find((categoria) => categoria.id === producto.id_categoria)?.nombre}
@@ -262,7 +262,7 @@ const ProductosAudit = () => {
                                 <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin categoría</span>
                             )}
                         </TableCell>
-                        <TableCell className='text-sm'>
+                        <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                             {producto.id_marca ? (
                                 <span className="border border-gray-400 rounded px-2 py-1 text-sm">
                                     {marcas.find((marca) => marca.id === producto.id_marca)?.nombre}
@@ -271,10 +271,10 @@ const ProductosAudit = () => {
                                 <span className="bg-gray-400 text-white rounded px-2 py-1 text-sm">Sin marca</span>
                             )}
                         </TableCell>
-                        <TableCell className='text-sm'>
+                        <TableCell className='text-sm border-b border-r-0 border-l-0 border-black'>
                             {formatearPrecio(producto.precio)}
                         </TableCell>
-                        <TableCell className='text-lg'>
+                        <TableCell className='text-lg border-b border-r-0 border-l-0 border-black'>
                             {AlertStock(producto.cantidad)}
                         </TableCell>
                     </TableRow>

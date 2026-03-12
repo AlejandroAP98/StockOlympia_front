@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className='w-full h-screen bg-no-repeat ' style={{
+        <div className='w-full h-screen bg-repeat-round ' style={{
             // imagen de assets/background.jpg
             backgroundImage: `url(${backgound})`,
         }}>
